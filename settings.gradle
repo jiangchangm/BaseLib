@@ -1,0 +1,18 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
+        maven { url 'https://maven.aliyun.com/repository/releases'}
+        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "TestApplication"
+include ':example'
+include ':base'
+include ':network'
+include ':common'
+include ':image'
+include ':video'
+include ':permission'
