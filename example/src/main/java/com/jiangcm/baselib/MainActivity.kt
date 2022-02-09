@@ -1,11 +1,15 @@
 package com.jiangcm.baselib
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jiangcm.common.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    override fun layoutRes(): Int = R.layout.activity_main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        showProgress(getString(R.string.app_loading))
     }
+
 }

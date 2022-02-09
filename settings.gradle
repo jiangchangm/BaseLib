@@ -8,7 +8,7 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "TestApplication"
+rootProject.name = "BaseLib"
 include ':example'
 include ':base'
 include ':network'

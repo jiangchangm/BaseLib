@@ -9,8 +9,8 @@ ext {
             versionName      : "1.0.0"
     ]
     appId = [
-            applicationId    : "com.jiangcm.mu",
-            applicationId_ivt: "com.jiangcm.mu.ivt"
+            applicationId    : "com.jiangcm.baselib",
+            applicationId_ivt: "com.jiangcm.baselib.ivt"
     ]
 
     signingConfigs = [

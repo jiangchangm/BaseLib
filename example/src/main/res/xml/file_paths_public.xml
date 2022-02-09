@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-files-path name="cache_download" path="download"/>
+    <external-path name="take_photo" path="jiangcm/image"/>
+    <external-cache-path name="take_photo_gallery_final" path="/"/>
+</paths>
