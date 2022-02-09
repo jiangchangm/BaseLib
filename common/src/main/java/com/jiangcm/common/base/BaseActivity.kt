@@ -12,14 +12,12 @@ abstract class BaseActivity : AppCompatActivity(), ProgressView {
         ProgressViewImpl(this)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutRes())
     }
 
     open fun layoutRes() = 0
-
 
     fun showProgress(
         message: String = getString(R.string.app_loading),

@@ -7,9 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 
-/**
- * A simple [Fragment] subclass.
- */
 open class BaseFragment : Fragment() {
 
     override fun onCreateView(
