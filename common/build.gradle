@@ -72,7 +72,12 @@ dependencies {
     api rootProject.ext.dependencies["kotlinxCoroutines"]
     api rootProject.ext.dependencies["kotlinStdlib"]
 
+    api rootProject.ext.dependencies["lifecycleLivedataktx"]
     api rootProject.ext.dependencies["lifecycleViewmodelKtx"]
+
+    api rootProject.ext.dependencies["rxJava"]
+    api rootProject.ext.dependencies["jsr305Annotations"]
+
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["activity"]
     api rootProject.ext.dependencies["retrofitConverterGson"]
