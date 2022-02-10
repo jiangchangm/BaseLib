@@ -1,6 +1,7 @@
 package com.jiangcm.baselib
 
 import android.widget.TextView
+import com.jiangcm.base.core.AppManager
 import com.jiangcm.base.repository.network.vm.TestViewModel
 import com.jiangcm.common.base.BaseVmActivity
 import com.jiangcm.common.ext.Terror
@@ -23,5 +24,9 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
         mViewModel.retError.observe(this, {
            Terror(it.toString())
         })
+    }
+
+    override fun onBackPressed() {
+        AppManager.instance.doubleBackToExit()
     }
 }
