@@ -10,9 +10,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "BaseLib"
 include ':example'
-include ':base'
-include ':network'
 include ':common'
-include ':image'
-include ':video'
 include ':permission'

@@ -15,20 +15,6 @@ Android工程快速开发工具模板
 
 公用module
 
-
-#### 三、image
-
-图片处理
-
-
-#### 四、network
-
-网络请求
-
-#### 五、video
-
-视频处理
-
-#### 六、permission
+#### 三、permission
 
 权限处理

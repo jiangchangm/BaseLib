@@ -6,7 +6,7 @@ import com.jiangcm.baselib.core.AppManager
 import com.jiangcm.common.base.BaseViewModel
 import com.jiangcm.common.ext.Terror
 import com.jiangcm.common.ext.showToast
-import com.jiangcm.network.api.ApiException
+import com.jiangcm.baselib.api.ApiException
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException

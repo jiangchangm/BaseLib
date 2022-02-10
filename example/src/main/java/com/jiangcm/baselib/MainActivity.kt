@@ -1,6 +1,5 @@
 package com.jiangcm.baselib
 
-import android.os.Bundle
 import com.jiangcm.baselib.vm.TestViewModel
 import com.jiangcm.common.base.BaseVmActivity
 
@@ -12,6 +11,8 @@ class MainActivity : BaseVmActivity<TestViewModel>(){
 
     override fun initData() {
         super.initData()
+        isTranslucentStatus = true
+        fitSystemWindows = true
     }
 
 }
