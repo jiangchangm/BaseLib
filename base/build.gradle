@@ -39,6 +39,9 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 kapt {

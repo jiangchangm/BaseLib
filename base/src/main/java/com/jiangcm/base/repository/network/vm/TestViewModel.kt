@@ -12,8 +12,6 @@ class TestViewModel : AppBaseViewModel() {
     val retResponse = MutableLiveData<Any?>()
     val retError = MutableLiveData<Any?>()
 
-    private var page = INITIAL_PAGE
-
     fun refreshProjectList() {
         launch(
             block = {
