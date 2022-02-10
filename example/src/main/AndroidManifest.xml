@@ -4,6 +4,7 @@
     package="com.jiangcm.baselib">
 
     <application
+        android:name="com.jiangcm.base.core.AppManager"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="${app_icon}"

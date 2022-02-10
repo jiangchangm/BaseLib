@@ -1,7 +1,7 @@
-package com.jiangcm.baselib.core
+package com.jiangcm.base.core
 
 import com.alibaba.android.arouter.launcher.ARouter
-import com.jiangcm.baselib.utils.PropertyUtils
+import com.jiangcm.base.utils.PropertyUtils
 import com.jiangcm.common.base.BaseAppManager
 import kotlin.properties.Delegates
 
@@ -18,7 +18,7 @@ class AppManager : BaseAppManager() {
 
     override fun onCreate() {
         super.onCreate()
-        instance=this
+        instance =this
         initRouter()
     }
 

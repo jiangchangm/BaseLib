@@ -108,7 +108,6 @@ kapt {
 dependencies {
     implementation project(path: ':base')
     implementation project(path: ':common')
-    implementation project(path: ':permission')
     //noinspection GradleDynamicVersion
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

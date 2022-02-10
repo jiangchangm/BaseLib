@@ -1,12 +1,12 @@
-package com.jiangcm.baselib.base
+package com.jiangcm.base.base
 
 import com.google.gson.JsonSyntaxException
-import com.jiangcm.baselib.R
-import com.jiangcm.baselib.core.AppManager
+import com.jiangcm.base.R
+import com.jiangcm.base.core.AppManager
+import com.jiangcm.base.api.ApiException
 import com.jiangcm.common.base.BaseViewModel
 import com.jiangcm.common.ext.Terror
 import com.jiangcm.common.ext.showToast
-import com.jiangcm.baselib.api.ApiException
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -43,7 +43,7 @@ open class AppBaseViewModel : BaseViewModel() {
                 if (showErrorToast) AppManager.instance.showToast(R.string.api_data_parse_error)
             // 其他错误
             else ->
-                if (showErrorToast)AppManager.instance.Terror(e.message ?: return)
+                if (showErrorToast) AppManager.instance.Terror(e.message ?: return)
         }
     }
 }
