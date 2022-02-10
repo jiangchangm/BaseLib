@@ -13,6 +13,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
         observe()
         initView()
         initData()
+        setTranslucentStatus()
     }
 
     /**

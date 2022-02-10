@@ -7,4 +7,5 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimAmount">0.7</item>
     </style>
+    
 </resources>

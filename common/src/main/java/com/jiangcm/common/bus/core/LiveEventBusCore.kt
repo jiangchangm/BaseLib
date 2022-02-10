@@ -86,8 +86,7 @@ class LiveEventBusCore private constructor() {
         this.autoClear = autoClear
     }
 
-    private inner class LiveEvent<T>(private val key: String) :
-        Observable<T> {
+    private inner class LiveEvent<T>(private val key: String) : Observable<T> {
         val liveData: LifecycleLiveData<T>
         private val observerMap: MutableMap<Observer<*>, ObserverWrapper<T>> = HashMap()
         private val mainHandler = Handler(Looper.getMainLooper())
