@@ -106,12 +106,10 @@ kapt {
 }
 
 dependencies {
-    api rootProject.ext.dependencies["corektx"]
-    api rootProject.ext.dependencies["appcompat"]
-    api rootProject.ext.dependencies["material"]
-    api rootProject.ext.dependencies["constraintlayout"]
-    implementation project(path: ':permission')
+    implementation project(path: ':base')
     implementation project(path: ':common')
+    implementation project(path: ':permission')
+    //noinspection GradleDynamicVersion
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

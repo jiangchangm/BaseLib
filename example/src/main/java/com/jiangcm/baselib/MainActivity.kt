@@ -11,8 +11,6 @@ class MainActivity : BaseVmActivity<TestViewModel>(){
 
     override fun initData() {
         super.initData()
-        isTranslucentStatus = true
-        fitSystemWindows = true
     }
 
 }
