@@ -1,7 +1,7 @@
 ext {
 
     android = [
-            compileSdkVersion: 32,
+            compileSdkVersion: 30,
             minSdkVersion    : 21,
             targetSdkVersion : 32,
             //版本号和版本名称

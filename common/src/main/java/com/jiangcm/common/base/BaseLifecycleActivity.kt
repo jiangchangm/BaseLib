@@ -23,7 +23,7 @@ abstract class BaseLifecycleActivity : AppCompatActivity(), LifecycleProvider<Ac
     //沉浸后是否留出状态栏高度，默认不留高度
     var fitSystemWindows: Boolean = false
 
-    open val progressViewImpl: ProgressViewImpl by lazy {
+    private val progressViewImpl: ProgressViewImpl by lazy {
         ProgressViewImpl(this)
     }
 
