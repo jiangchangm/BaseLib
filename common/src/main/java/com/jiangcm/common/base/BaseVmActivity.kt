@@ -1,11 +1,20 @@
 package com.jiangcm.common.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 
-abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
+abstract class BaseVmActivity<VM : BaseViewModel> : BaseLifecycleActivity() {
 
     protected open lateinit var mViewModel: VM
+
+    protected inline fun <reified T : ViewDataBinding> binding(
+        @LayoutRes resId: Int
+    ): Lazy<T> = lazy { DataBindingUtil.setContentView<T>(this, resId).apply {
+        lifecycleOwner = this@BaseVmActivity
+    } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,22 +41,9 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
     /**
      * 订阅，LiveData、Bus
      */
-    open fun observe() {
+    open fun observe() {}
 
-    }
-
-    /**
-     * 数据初始化相关
-     */
-    open fun initView() {
-
-    }
-
-    /**
-     * 懒加载数据
-     */
-    open fun initData() {
-
-    }
+    open fun initView() {}
+    open fun initData() {}
 
 }
