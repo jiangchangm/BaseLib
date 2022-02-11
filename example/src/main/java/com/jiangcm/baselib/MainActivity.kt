@@ -1,11 +1,10 @@
 package com.jiangcm.baselib
 
-import com.jiangcm.base.core.AppManager
-import com.jiangcm.base.repository.network.vm.TestViewModel
+import com.jiangcm.common.core.AppManager
+import com.jiangcm.common.repository.network.vm.TestViewModel
 import com.jiangcm.baselib.databinding.ActivityMainBinding
-import com.jiangcm.common.base.BaseVmActivity
-import com.jiangcm.common.ext.Terror
-import com.jiangcm.common.log.LogUtils
+import com.jiangcm.base.base.BaseVmActivity
+import com.jiangcm.base.ext.Terror
 
 class MainActivity : BaseVmActivity<TestViewModel>() {
 

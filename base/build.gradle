@@ -51,13 +51,22 @@ kapt {
 }
 
 dependencies {
-    implementation project(path: ':common')
-    implementation project(path: ':permission')
-    api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["corektx"]
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["material"]
-    api rootProject.ext.dependencies["constraintlayout"]
+
+    api rootProject.ext.dependencies["kotlinxCoroutines"]
+    api rootProject.ext.dependencies["kotlinStdlib"]
+
+    api rootProject.ext.dependencies["lifecycleLivedataktx"]
+    api rootProject.ext.dependencies["lifecycleViewmodelKtx"]
+
+    api rootProject.ext.dependencies["rxJava"]
+    api rootProject.ext.dependencies["jsr305Annotations"]
+
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["activity"]
+    api rootProject.ext.dependencies["retrofitConverterGson"]
 
     api("com.alibaba:arouter-api:1.5.2") {
         exclude module: 'support-v4'

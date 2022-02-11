@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.jiangcm.base.repository.network.vm.TestViewModel" />
+            type="com.jiangcm.common.repository.network.vm.TestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

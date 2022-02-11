@@ -10,11 +10,14 @@ Android工程快速开发工具模板
 
 各module内容集成例子
 
+#### 二、base
 
-#### 二、common
+基类
+
+#### 三、common
 
 公用module
 
-#### 三、permission
+#### 四、permission
 
 权限处理
