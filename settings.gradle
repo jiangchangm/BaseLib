@@ -11,5 +11,6 @@ dependencyResolutionManagement {
 rootProject.name = "BaseLib"
 include ':example'
 include ':common'
-include ':permission'
 include ':base'
+include ':permission'
+

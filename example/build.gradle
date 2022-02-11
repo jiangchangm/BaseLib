@@ -97,8 +97,8 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 }
 

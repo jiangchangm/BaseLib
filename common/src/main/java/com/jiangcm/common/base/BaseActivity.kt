@@ -30,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleProvider<ActivityEve
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleSubject.onNext(ActivityEvent.CREATE)
-        setContentView(layoutRes())
+//        setContentView(layoutRes())
     }
 
     open fun layoutRes() = 0
