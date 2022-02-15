@@ -13,6 +13,13 @@ object Bus {
     }
 
     /**
+     * 延迟发送
+     */
+    inline fun <reified T> postDelay(channel: String, value: T, delay: Long) {
+        LiveEventBus[channel, T::class.java].postDelay(value,delay)
+    }
+
+    /**
      * 订阅LiveDataEventBus消息
      * @param channel 渠道
      * @param owner 生命周期owner

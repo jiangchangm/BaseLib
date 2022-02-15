@@ -1,34 +1,33 @@
 package androidx.lifecycle
 
-import java.lang.Exception
-import java.lang.IllegalArgumentException
-
-
 open class ExternalLiveData<T>() : MutableLiveData<T>() {
-
-    public override fun getVersion(): Int {
-        return super.getVersion()
-    }
-
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         if (owner.lifecycle.currentState == Lifecycle.State.DESTROYED) {
+            // ignore
             return
         }
         try {
             //use ExternalLifecycleBoundObserver instead of LifecycleBoundObserver
-            val wrapper: LiveData<*>.LifecycleBoundObserver = ExternalLifecycleBoundObserver(owner, observer)
-            val existing:LiveData<*>.LifecycleBoundObserver =
-                callMethodPutIfAbsent(observer, wrapper) as LiveData<*>.LifecycleBoundObserver
-            if (!existing.isAttachedTo(owner)) {
+            val wrapper: LifecycleBoundObserver = ExternalLifecycleBoundObserver(owner, observer)
+            val existing: LifecycleBoundObserver? =
+                callMethodPutIfAbsent(observer, wrapper) as? LiveData<T>.LifecycleBoundObserver
+            if (existing != null && !existing.isAttachedTo(owner)) {
                 throw IllegalArgumentException(
                     "Cannot add the same observer"
                             + " with different lifecycles"
                 )
             }
+            if (existing != null) {
+                return
+            }
             owner.lifecycle.addObserver(wrapper)
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    public override fun getVersion(): Int {
+        return super.getVersion()
     }
 
     /**
@@ -40,7 +39,7 @@ open class ExternalLiveData<T>() : MutableLiveData<T>() {
      *
      * @return Lifecycle.State
      */
-    protected open fun observerActiveLevel(): Lifecycle.State? {
+    protected open fun observerActiveLevel(): Lifecycle.State {
         return Lifecycle.State.CREATED
     }
 
@@ -50,13 +49,13 @@ open class ExternalLiveData<T>() : MutableLiveData<T>() {
     ) :
         LifecycleBoundObserver(owner, observer) {
         override fun shouldBeActive(): Boolean {
-            return observerActiveLevel()?.let { mOwner.lifecycle.currentState.isAtLeast(it) } == true
+            return mOwner.lifecycle.currentState.isAtLeast(observerActiveLevel())
         }
     }
 
     @get:Throws(Exception::class)
-    private val fieldObservers: Any?
-         get() {
+    private val fieldObservers: Any
+        get() {
             val fieldObservers = LiveData::class.java.getDeclaredField("mObservers")
             fieldObservers.isAccessible = true
             return fieldObservers[this]
@@ -65,7 +64,7 @@ open class ExternalLiveData<T>() : MutableLiveData<T>() {
     @Throws(Exception::class)
     private fun callMethodPutIfAbsent(observer: Any, wrapper: Any): Any? {
         val mObservers = fieldObservers
-        val classOfSafeIterableMap: Class<*> = mObservers!!.javaClass
+        val classOfSafeIterableMap: Class<*> = mObservers.javaClass
         val putIfAbsent = classOfSafeIterableMap.getDeclaredMethod(
             "putIfAbsent",
             Any::class.java, Any::class.java
@@ -75,6 +74,6 @@ open class ExternalLiveData<T>() : MutableLiveData<T>() {
     }
 
     companion object {
-        const val START_VERSION = LiveData.START_VERSION
+        val START_VERSION = LiveData.START_VERSION
     }
 }

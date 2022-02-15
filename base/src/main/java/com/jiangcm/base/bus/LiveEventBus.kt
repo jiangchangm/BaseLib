@@ -1,5 +1,6 @@
 package com.jiangcm.base.bus
 
+import android.util.Log
 import com.jiangcm.base.bus.core.Config
 import com.jiangcm.base.bus.core.LiveEvent
 import com.jiangcm.base.bus.core.LiveEventBusCore
@@ -15,6 +16,7 @@ object LiveEventBus {
      * @return Observable<T>
     </T></T> */
     operator fun <T> get(key: String, type: Class<T>): Observable<T> {
+        Log.v("test","key $key   type $type")
         return LiveEventBusCore.get().with(key,type)
     }
 
