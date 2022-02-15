@@ -28,10 +28,6 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
     override fun initData() {
         showProgress(cancel = false)
         mViewModel.refreshProjectList()
-        LiveEventBus["some_key", String::class.java]
-            .post("haha")
-        Bus.post("some_key1","heihei")
-        Bus.postDelay("some_key2","SDFAASD",500)
     }
 
     override fun observe() {
@@ -42,16 +38,6 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
         mViewModel.retError.observe(this) {
             Terror(it.toString())
         }
-        Bus.observe<String>("some_key2",this){
-            Log.v("test","some_key2 test $it")
-        }
-        Bus.observe<String>("some_key1",this){
-            Log.v("test","Bus.observe test $it")
-        }
-        LiveEventBus["some_key", String::class.java]
-            .observe(this) {
-                Log.v("test","test $it")
-            }
     }
 
     override fun onBackPressed() {
