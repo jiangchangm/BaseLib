@@ -13,8 +13,8 @@ class LebIpcReceiver : BroadcastReceiver() {
         if (IpcConst.ACTION == intent.action) {
             try {
                 val key = intent.getStringExtra(IpcConst.KEY)
-                val value: Any = ProcessorManager.getManager().createFrom(intent)
-                if (key != null) {
+                val value: Any? = ProcessorManager.getManager().createFrom(intent)
+                if (key != null && value != null) {
                     LiveEventBus[key].post(value)
                 }
             } catch (e: Exception) {
