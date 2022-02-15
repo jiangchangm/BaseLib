@@ -20,7 +20,7 @@ object RetrofitClient {
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(10, TimeUnit.SECONDS)
-        .sslSocketFactory(TrustAllCerts.createSSLSocketFactory())
+        .sslSocketFactory(TrustAllCerts.createSSLSocketFactory(), TrustAllCerts())
         .hostnameVerifier(TrustAllCerts.TrustAllHostnameVerifier())
         .addInterceptor(TokenInterceptor())
         .addInterceptor(LoggerInterceptor("okhttp")).build()

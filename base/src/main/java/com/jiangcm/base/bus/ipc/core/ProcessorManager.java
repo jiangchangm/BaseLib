@@ -53,7 +53,7 @@ public class ProcessorManager {
         //用指定的processor处理
         IpcConfig config = value.getClass().getAnnotation(IpcConfig.class);
         if (config != null) {
-            Class<? extends Processor> processorType = config.processor();
+            Class<? extends Processor> processorType = (Class<? extends Processor>) config.processor();
             String processorTypeName = processorType.getName();
             if (!processorMap.containsKey(processorTypeName)) {
                 try {
