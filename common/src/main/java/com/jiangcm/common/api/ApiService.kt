@@ -1,7 +1,5 @@
 package com.jiangcm.common.api
 
-import com.google.gson.Gson
-import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.http.*
 
