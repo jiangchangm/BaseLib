@@ -26,10 +26,12 @@ object RetrofitClient {
         .addInterceptor(LoggerInterceptor("okhttp")).build()
 
     /**Retrofit*/
-    fun getService(): Retrofit = Retrofit.Builder()
+    private val retrofit = Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(PropertyUtils.getPropertiesByName(PropertyUtils.BASE_API_URL))
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+    /**ApiService*/
+    val apiService: ApiService = retrofit.create(ApiService::class.java)
 }

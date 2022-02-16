@@ -6,13 +6,13 @@
     <data>
         <variable
             name="vm"
-            type="com.jiangcm.common.repository.network.vm.TestViewModel" />
+            type="com.jiangcm.baselib.main.TestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".main.MainActivity">
 
         <TextView
             android:id="@+id/textView"
