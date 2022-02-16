@@ -1,7 +1,0 @@
-ext {
-    buildModule = [
-            //      是否需要单独编译 true表示不需要，false表示需要
-            isNeedUserModule       : false,
-            isNeedMediaPlayerModule: false,
-    ]
-}
