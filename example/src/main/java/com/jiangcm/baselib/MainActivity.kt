@@ -1,17 +1,10 @@
 package com.jiangcm.baselib
 
-import android.util.Log
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import com.jiangcm.common.core.AppManager
 import com.jiangcm.common.repository.network.vm.TestViewModel
 import com.jiangcm.baselib.databinding.ActivityMainBinding
 import com.jiangcm.base.base.BaseVmActivity
-import com.jiangcm.base.bus.Bus
-import com.jiangcm.base.bus.LiveEventBus
 import com.jiangcm.base.ext.Terror
-import com.jiangcm.base.log.LogUtils
 
 class MainActivity : BaseVmActivity<TestViewModel>() {
 

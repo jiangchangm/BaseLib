@@ -1,3 +1,5 @@
+import com.jiangcm.dependencies.*
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -7,8 +9,6 @@ plugins {
 
 group = 'com.github.jiangchangm'
 
-def androidId = rootProject.ext.android
-
 afterEvaluate {
     publishing {
         publications {
@@ -16,8 +16,8 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.jiangcm'
-                artifactId = 'BaseLib.common'
-                version = androidId.versionName
+                artifactId = 'BaseLib.permission'
+                version =AndroidConfig.versionName
             }
         }
     }
@@ -25,11 +25,11 @@ afterEvaluate {
 
 
 android {
-    compileSdk androidId.compileSdkVersion
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk androidId.minSdkVersion
-        targetSdk androidId.targetSdkVersion
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -65,15 +65,14 @@ kapt {
 }
 
 dependencies {
-    api rootProject.ext.dependencies["corektx"]
-    api rootProject.ext.dependencies["appcompat"]
-    api rootProject.ext.dependencies["material"]
-    api("com.alibaba:arouter-api:1.5.2") {
+    api Deps.corektx
+    api Deps.appcompat
+    api Deps.material
+    api(Deps.arouterApi) {
         exclude module: 'support-v4'
     }
-    kapt "com.alibaba:arouter-compiler:1.5.2"
-    //noinspection GradleDynamicVersion
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    kapt Deps.arouterCompiler
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

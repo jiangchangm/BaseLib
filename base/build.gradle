@@ -1,22 +1,21 @@
+import com.jiangcm.dependencies.*
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
 
-
-def androidId = rootProject.ext.android
-
 android {
-    compileSdk androidId.compileSdkVersion
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk androidId.minSdkVersion
-        targetSdk androidId.targetSdkVersion
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner AndroidConfig.AndroidJUnitRunner
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -51,29 +50,29 @@ kapt {
 }
 
 dependencies {
-    api rootProject.ext.dependencies["corektx"]
-    api rootProject.ext.dependencies["appcompat"]
-    api rootProject.ext.dependencies["material"]
+    api Deps.corektx
+    api Deps.appcompat
+    api Deps.material
 
-    api rootProject.ext.dependencies["kotlinxCoroutines"]
-    api rootProject.ext.dependencies["kotlinStdlib"]
+    api Deps.kotlinxCoroutines
+    api Deps.kotlinStdlib
 
-    api rootProject.ext.dependencies["lifecycleLivedataktx"]
-    api rootProject.ext.dependencies["lifecycleViewmodelKtx"]
+    api Deps.lifecycleLivedataktx
+    api Deps.lifecycleViewmodelKtx
 
-    api rootProject.ext.dependencies["rxJava"]
-    api rootProject.ext.dependencies["jsr305Annotations"]
+    api Deps.rxJava
+    api Deps.jsr305Annotations
 
-    api rootProject.ext.dependencies["retrofit"]
-    api rootProject.ext.dependencies["activity"]
-    api rootProject.ext.dependencies["retrofitConverterGson"]
+    api Deps.retrofit
+    api Deps.activity
+    api Deps.retrofitConverterGson
 
-    api("com.alibaba:arouter-api:1.5.2") {
+    api(Deps.arouterApi) {
         exclude module: 'support-v4'
     }
-    kapt "com.alibaba:arouter-compiler:1.5.2"
-    //noinspection GradleDynamicVersion
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    kapt Deps.arouterCompiler
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

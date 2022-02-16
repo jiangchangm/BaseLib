@@ -1,12 +1,10 @@
+import com.jiangcm.dependencies.*
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
 
-def androidId = rootProject.ext.android
-def appId = rootProject.ext.appId
-def releaseConfig = rootProject.ext.signingConfigs
 
 def in_args = System.getProperty('env')
 if (in_args != 'dev' && in_args != 'ivt' && in_args != 'prod') {
@@ -22,24 +20,24 @@ if (ext.env != 'prod') {
 }
 
 android {
-    compileSdk androidId.compileSdkVersion
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
         if (env != 'prod') {
-            applicationId appId.applicationId
+            applicationId AppId.applicationId
             manifestPlaceholders = [app_icon: "@mipmap/ic_launcher",
                                     app_icon_round: "@mipmap/ic_launcher_round",
                                     label   : "@string/app_name_test"]
         } else {
-            applicationId appId.applicationId
+            applicationId AppId.applicationId
             manifestPlaceholders = [app_icon: "@mipmap/ic_launcher",
                                     app_icon_round: "@mipmap/ic_launcher_round",
                                     label   : "@string/app_name"]
         }
-        minSdk androidId.minSdkVersion
-        targetSdk androidId.targetSdkVersion
-        versionCode androidId.versionCode
-        versionName androidId.versionName
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        versionCode AndroidConfig.versionCode
+        versionName AndroidConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -60,9 +58,9 @@ android {
     signingConfigs {
         myConfig {
             storeFile file("src/main/signer/${env}/${env}.jks")
-            storePassword releaseConfig.storePassword
-            keyAlias releaseConfig.keyAlias
-            keyPassword releaseConfig.keyPassword
+            storePassword SigningConfigs.storePassword
+            keyAlias SigningConfigs.keyAlias
+            keyPassword SigningConfigs.keyPassword
             v2SigningEnabled true
             v1SigningEnabled true
         }
@@ -120,8 +118,11 @@ kapt {
 dependencies {
     implementation project(path: ':base')
     implementation project(path: ':common')
-    //noinspection GradleDynamicVersion
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api(Deps.arouterApi) {
+        exclude module: 'support-v4'
+    }
+    kapt Deps.arouterCompiler
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
