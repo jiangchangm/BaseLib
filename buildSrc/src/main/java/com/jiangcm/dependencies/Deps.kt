@@ -13,12 +13,14 @@ object DepsVersion {
     const val materialSdk = "1.3.0"
     const val appcompatSdk = "1.2.0"
     const val coreKtxSdk = "1.3.2"
-    const val activityVersion = "1.2.0"
+    const val activityVersion = "1.2.4"
     const val roomVersion = "2.2.5"
-    const val fragmentVersion = "1.3.0"
+    const val fragmentVersion = "1.3.6"
     const val jsoupVersion = "1.14.3"
     const val viewHolderVersion = "3.0.7"
     const val jsr305Version = "3.0.2"
+    const val leakcanary = "2.8.1"
+    const val ereza = "2.3.0"
 }
 
 
@@ -71,5 +73,10 @@ object Deps {
     const val jsr305Annotations = "com.google.code.findbugs:jsr305:${DepsVersion.jsr305Version}"
     const val BaseRecyclerViewAdapterHelper =
         "com.github.CymChad:BaseRecyclerViewAdapterHelper:${DepsVersion.viewHolderVersion}"
+    //内存泄漏检查
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${DepsVersion.leakcanary}"
+    // 防崩溃
+    const val ereza = "cat.ereza:customactivityoncrash:${DepsVersion.ereza}"
+
 }
 

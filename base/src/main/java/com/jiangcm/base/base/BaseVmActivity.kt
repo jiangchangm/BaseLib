@@ -12,9 +12,11 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseLifecycleActivity() {
 
     protected inline fun <reified T : ViewDataBinding> binding(
         @LayoutRes resId: Int
-    ): Lazy<T> = lazy { DataBindingUtil.setContentView<T>(this, resId).apply {
-        lifecycleOwner = this@BaseVmActivity
-    } }
+    ): Lazy<T> = lazy {
+        DataBindingUtil.setContentView<T>(this, resId).apply {
+            lifecycleOwner = this@BaseVmActivity
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

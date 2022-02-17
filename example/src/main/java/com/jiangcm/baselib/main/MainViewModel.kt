@@ -8,6 +8,7 @@ class TestViewModel : AppBaseViewModel() {
         const val INITIAL_PAGE = 0
     }
     private val detailRepository by lazy { MainRepository() }
+
     val retResponse = MutableLiveData<Any?>()
     val retError = MutableLiveData<Any?>()
 

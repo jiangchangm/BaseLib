@@ -1,7 +1,7 @@
 package com.jiangcm.dependencies
 
 object AndroidConfig {
-    const val compileSdkVersion = 30
+    const val compileSdkVersion = 32
     const val minSdkVersion = 21
     const val targetSdkVersion = 32
 

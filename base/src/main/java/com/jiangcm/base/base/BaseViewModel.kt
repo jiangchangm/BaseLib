@@ -1,5 +1,8 @@
 package com.jiangcm.base.base
 
+import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

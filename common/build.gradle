@@ -76,6 +76,7 @@ dependencies {
     api Deps.appcompat
     api Deps.material
     api Deps.constraintlayout
+    api Deps.ereza
 
     api(Deps.arouterApi) {
         exclude module: 'support-v4'
