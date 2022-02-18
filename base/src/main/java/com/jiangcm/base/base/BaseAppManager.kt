@@ -9,7 +9,6 @@ import com.jiangcm.base.ext.Tnormal
 abstract class BaseAppManager : Application() {
 
     private var life: LifeListener? = null
-    private var act: Activity? = null
     private var actList: MutableList<Activity> = mutableListOf()
     private var mFinalCount: Int = 0
 
@@ -70,7 +69,6 @@ abstract class BaseAppManager : Application() {
         }
 
         override fun onActivityStarted(activity: Activity) {
-            act = activity
             mFinalCount++;
             //如果mFinalCount ==1，说明是从后台到前台
             if (mFinalCount == 1) {
