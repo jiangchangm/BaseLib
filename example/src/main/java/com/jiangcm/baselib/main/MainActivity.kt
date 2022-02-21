@@ -34,13 +34,6 @@ class MainActivity : BaseVmDbActivity<TestViewModel,ActivityMainBinding>() {
         mViewModel.refreshProjectList()
     }
 
-    override fun observe() {
-        super.observe()
-        mViewModel.retResponse.observe(this) {
-            Log.v("thss",it.toString())
-        }
-    }
-
     override fun onBackPressed() {
         AppManager.instance.doubleBackToExit()
     }
