@@ -21,6 +21,7 @@ object DepsVersion {
     const val jsr305Version = "3.0.2"
     const val leakcanary = "2.8.1"
     const val ereza = "2.3.0"
+    const val lottie="4.2.1"
 }
 
 
@@ -77,6 +78,8 @@ object Deps {
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${DepsVersion.leakcanary}"
     // 防崩溃
     const val ereza = "cat.ereza:customactivityoncrash:${DepsVersion.ereza}"
+    //lottie动画
+    const val lottie = "com.airbnb.android:lottie:${DepsVersion.lottie}"
 
 }
 

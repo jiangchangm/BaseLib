@@ -29,14 +29,24 @@
                 android:resource="@xml/file_paths_public" />
         </provider>
 
-        <activity
-            android:name=".main.MainActivity"
+        <activity android:name=".guideView.aty.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".guideView.aty.SimpleGuideViewActivity"/>
+        <activity android:name=".guideView.aty.MyListActivity"/>
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true">
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
     </application>
 
