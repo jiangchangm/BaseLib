@@ -57,40 +57,54 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
      * @param activity 目标Activity
      */
     @JvmOverloads
-    fun show(activity: Activity, overlay: ViewGroup? = null) {
+    fun show(activity: Activity, overlay: ViewGroup? = null, flag: Boolean = false) {
         var overlay = overlay
-        mMaskView = onCreateView(activity, overlay)
-        mMaskView!!.post {
-            Log.v("thss", "mMaskView " + mMaskView!!.width)
-            Log.v("thss", "mMaskView " + mMaskView!!.height)
-        }
+        mMaskView = onCreateView(activity, overlay,flag)
         if (overlay == null) {
             overlay = activity.window.decorView as ViewGroup
         }
-        val finalOverlay = overlay
-        overlay.post {
-            Log.v("thss", "finalOverlay " + finalOverlay!!.width)
-            Log.v("thss", "finalOverlay " + finalOverlay.height)
-        }
-        if (mMaskView!!.parent == null && mConfiguration!!.mTargetView != null) {
-            overlay!!.addView(mMaskView)
-            if (mConfiguration!!.mEnterAnimationId != -1) {
-                val anim =
-                    AnimationUtils.loadAnimation(activity, mConfiguration!!.mEnterAnimationId)!!
-                anim.setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationStart(animation: Animation) {}
-                    override fun onAnimationEnd(animation: Animation) {
-                        if (mOnVisibilityChangedListener != null) {
-                            mOnVisibilityChangedListener!!.onShown()
+        if (mMaskView?.parent == null && mConfiguration?.mTargetView != null) {
+            if(mConfiguration?.mTargetView == null){
+                overlay.addView(mMaskView)
+                if (mConfiguration?.mEnterAnimationId != -1) {
+                    val anim =
+                        AnimationUtils.loadAnimation(activity, mConfiguration!!.mEnterAnimationId)!!
+                    anim.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation) {}
+                        override fun onAnimationEnd(animation: Animation) {
+                            if (mOnVisibilityChangedListener != null) {
+                                mOnVisibilityChangedListener!!.onShown()
+                            }
                         }
-                    }
 
-                    override fun onAnimationRepeat(animation: Animation) {}
-                })
-                mMaskView!!.startAnimation(anim)
-            } else {
-                if (mOnVisibilityChangedListener != null) {
-                    mOnVisibilityChangedListener!!.onShown()
+                        override fun onAnimationRepeat(animation: Animation) {}
+                    })
+                    mMaskView?.startAnimation(anim)
+                } else {
+                    if (mOnVisibilityChangedListener != null) {
+                        mOnVisibilityChangedListener!!.onShown()
+                    }
+                }
+            }else{
+                overlay.addView(mMaskView)
+                if (mConfiguration?.mEnterAnimationId != -1) {
+                    val anim =
+                        AnimationUtils.loadAnimation(activity, mConfiguration!!.mEnterAnimationId)!!
+                    anim.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation) {}
+                        override fun onAnimationEnd(animation: Animation) {
+                            if (mOnVisibilityChangedListener != null) {
+                                mOnVisibilityChangedListener!!.onShown()
+                            }
+                        }
+
+                        override fun onAnimationRepeat(animation: Animation) {}
+                    })
+                    mMaskView?.startAnimation(anim)
+                } else {
+                    if (mOnVisibilityChangedListener != null) {
+                        mOnVisibilityChangedListener!!.onShown()
+                    }
                 }
             }
         }
@@ -146,7 +160,11 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
         mShouldCheckLocInWindow = set
     }
 
-    private fun onCreateView(activity: Activity, overlay: ViewGroup?): MaskView {
+    private fun onCreateView(
+        activity: Activity,
+        overlay: ViewGroup?,
+        flag: Boolean = false
+    ): MaskView {
         var overlay = overlay
         if (overlay == null) {
             overlay = activity.window.decorView as ViewGroup
@@ -191,7 +209,7 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
 
         // Adds the components to the mask view.
         for (c in mComponents!!) {
-            maskView.addView(componentToView(activity.layoutInflater, c))
+            maskView.addView(componentToView(activity.layoutInflater, c, flag))
         }
         return maskView
     }
@@ -217,6 +235,7 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
     }
 
     var startY = -1f
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
         if (motionEvent.action == MotionEvent.ACTION_DOWN) {

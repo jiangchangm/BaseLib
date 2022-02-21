@@ -1,5 +1,6 @@
 package com.jiangcm.base.base
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.CheckResult
@@ -27,10 +28,12 @@ abstract class BaseLifecycleActivity : AppCompatActivity(), LifecycleProvider<Ac
         ProgressViewImpl(this)
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleSubject.onNext(ActivityEvent.CREATE)
     }
+
 
 
     /**

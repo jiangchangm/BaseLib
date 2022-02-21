@@ -48,6 +48,6 @@ public class MutiComponent implements Component {
   }
 
   @Override public int getYOffset() {
-    return 20;
+    return 50;
   }
 }

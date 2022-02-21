@@ -9,16 +9,23 @@ internal object Common {
     /**
      * 设置Component
      */
-    fun componentToView(inflater: LayoutInflater?, c: Component): View {
+    fun componentToView(inflater: LayoutInflater?, c: Component, flag: Boolean = false): View {
         val view = c.getView(inflater)
-        val lp = MaskView.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        lp.offsetX = c.xOffset
-        lp.offsetY = c.yOffset
-        lp.targetAnchor = c.anchor
-        lp.targetParentPosition = c.fitPosition
+        val lp = if (flag) {
+            MaskView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        } else {
+            MaskView.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+        lp.offsetX = c.getXOffset()
+        lp.offsetY = c.getYOffset()
+        lp.targetAnchor = c.getAnchor()
+        lp.targetParentPosition = c.getFitPosition()
         view!!.layoutParams = lp
         return view
     }

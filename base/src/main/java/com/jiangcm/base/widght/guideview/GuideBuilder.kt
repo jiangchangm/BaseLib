@@ -71,7 +71,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         }
-        mConfiguration!!.mTargetView = v
+        mConfiguration?.mTargetView = v
         return this
     }
 
@@ -85,7 +85,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         }
-        mConfiguration!!.mTargetViewId = id
+        mConfiguration?.mTargetViewId = id
         return this
     }
 
@@ -98,9 +98,9 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         } else if (corner < 0) {
-            mConfiguration!!.mCorner = 0
+            mConfiguration?.mCorner = 0
         }
-        mConfiguration!!.mCorner = corner
+        mConfiguration?.mCorner = corner
         return this
     }
 
@@ -113,7 +113,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         }
-        mConfiguration!!.mGraphStyle = style
+        mConfiguration?.mGraphStyle = style
         return this
     }
 
@@ -127,7 +127,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         }
-        mConfiguration!!.mFullingColorId = id
+        mConfiguration?.mFullingColorId = id
         return this
     }
 
@@ -141,7 +141,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created, rebuild a new one.")
         }
-        mConfiguration!!.mAutoDismiss = b
+        mConfiguration?.mAutoDismiss = b
         return this
     }
 
@@ -169,7 +169,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         }
-        mConfiguration!!.mEnterAnimationId = id
+        mConfiguration?.mEnterAnimationId = id
         return this
     }
 
@@ -183,7 +183,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         }
-        mConfiguration!!.mExitAnimationId = id
+        mConfiguration?.mExitAnimationId = id
         return this
     }
 
@@ -197,7 +197,7 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created, rebuild a new one.")
         }
-        mComponents!!.add(component)
+        mComponents?.add(component)
         return this
     }
 
@@ -233,7 +233,7 @@ class GuideBuilder {
      * @param touchable true 遮罩不可点击，处于不可点击状态 false 可点击，遮罩自己可以处理自身点击事件
      */
     fun setOutsideTouchable(touchable: Boolean): GuideBuilder {
-        mConfiguration!!.mOutsideTouchable = touchable
+        mConfiguration?.mOutsideTouchable = touchable
         return this
     }
 
@@ -246,9 +246,9 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         } else if (padding < 0) {
-            mConfiguration!!.mPadding = 0
+            mConfiguration?.mPadding = 0
         }
-        mConfiguration!!.mPadding = padding
+        mConfiguration?.mPadding = padding
         return this
     }
 
@@ -261,9 +261,9 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         } else if (padding < 0) {
-            mConfiguration!!.mPaddingLeft = 0
+            mConfiguration?.mPaddingLeft = 0
         }
-        mConfiguration!!.mPaddingLeft = padding
+        mConfiguration?.mPaddingLeft = padding
         return this
     }
 
@@ -276,9 +276,9 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         } else if (padding < 0) {
-            mConfiguration!!.mPaddingTop = 0
+            mConfiguration?.mPaddingTop = 0
         }
-        mConfiguration!!.mPaddingTop = padding
+        mConfiguration?.mPaddingTop = padding
         return this
     }
 
@@ -291,9 +291,9 @@ class GuideBuilder {
         if (mBuilt) {
             throw BuildException("Already created. rebuild a new one.")
         } else if (padding < 0) {
-            mConfiguration!!.mPaddingRight = 0
+            mConfiguration?.mPaddingRight = 0
         }
-        mConfiguration!!.mPaddingRight = padding
+        mConfiguration?.mPaddingRight = padding
         return this
     }
 

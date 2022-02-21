@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/baseCy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".main.MainActivity">
@@ -30,7 +31,7 @@
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{`这是TextView...`}"
             app:layout_constraintStart_toStartOf="parent"

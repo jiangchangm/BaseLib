@@ -15,7 +15,9 @@ import android.view.View
  * * 具体创建遮罩的说明请参加[GuideBuilder]
  * *
  */
-interface Component {
+open interface Component {
+
+
     /**
      * 需要显示的view
      *
@@ -30,7 +32,7 @@ interface Component {
      * @return could be [.ANCHOR_LEFT], [.ANCHOR_RIGHT],
      * [.ANCHOR_TOP], [.ANCHOR_BOTTOM], [.ANCHOR_OVER]
      */
-    val anchor: Int
+    fun getAnchor(): Int
 
     /**
      * 相对目标View的对齐
@@ -38,21 +40,21 @@ interface Component {
      * @return could be [.FIT_START], [.FIT_END],
      * [.FIT_CENTER]
      */
-    val fitPosition: Int
+    fun getFitPosition(): Int
 
     /**
      * 相对目标View的X轴位移，在计算锚点和对齐之后。
      *
      * @return X轴偏移量, 单位 dp
      */
-    val xOffset: Int
+    fun getXOffset(): Int
 
     /**
      * 相对目标View的Y轴位移，在计算锚点和对齐之后。
      *
      * @return Y轴偏移量，单位 dp
      */
-    val yOffset: Int
+    fun getYOffset(): Int
 
     companion object {
         const val FIT_START = MaskView.LayoutParams.PARENT_START
@@ -73,5 +75,9 @@ interface Component {
          * 圆形
          */
         const val CIRCLE = 1
+        /**
+         * 不定点
+         */
+        const val UNROUNDRECT = -1
     }
 }

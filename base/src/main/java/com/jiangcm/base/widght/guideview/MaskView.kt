@@ -260,7 +260,7 @@ internal class MaskView @JvmOverloads constructor(
         super.onDraw(canvas)
         if (mChangedHeight != 0) {
             mTargetRect.offset(0f, mChangedHeight.toFloat())
-            mInitHeight = mInitHeight + mChangedHeight
+            mInitHeight += mChangedHeight
             mChangedHeight = 0
         }
         mEraserBitmap!!.eraseColor(Color.TRANSPARENT)
@@ -277,6 +277,7 @@ internal class MaskView @JvmOverloads constructor(
                     mTargetRect.centerX(), mTargetRect.centerY(),
                     mTargetRect.width() / 2, mEraser
                 )
+                Component.UNROUNDRECT ->{}
                 else -> mEraserCanvas.drawRoundRect(
                     mTargetRect,
                     mCorner.toFloat(),
