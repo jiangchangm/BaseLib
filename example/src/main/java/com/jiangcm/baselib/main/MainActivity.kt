@@ -1,9 +1,11 @@
 package com.jiangcm.baselib.main
 
 import android.annotation.SuppressLint
+import android.os.Bundle
+import android.util.Log
+import com.jiangcm.base.base.activity.BaseVmDbActivity
 import com.jiangcm.common.core.AppManager
 import com.jiangcm.baselib.databinding.ActivityMainBinding
-import com.jiangcm.base.base.BaseVmActivity
 import com.jiangcm.base.ext.Terror
 import com.jiangcm.base.ext.Tnormal
 import com.jiangcm.base.widght.guideview.Component
@@ -13,32 +15,29 @@ import com.jiangcm.baselib.guideView.component.LottieComponent
 import com.jiangcm.baselib.guideView.component.MutiComponent
 import com.jiangcm.baselib.guideView.component.SimpleComponent
 
-class MainActivity : BaseVmActivity<TestViewModel>() {
+class MainActivity : BaseVmDbActivity<TestViewModel,ActivityMainBinding>() {
 
 
     override fun viewModelClass(): Class<TestViewModel> = TestViewModel::class.java
 
-    private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
+    override fun layoutId(): Int =R.layout.activity_main
 
-    override fun initView() {
-        binding.vm = mViewModel
-        binding.baseCy.post {
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
+        mDatabind.vm = mViewModel
+        mDatabind.baseCy.post {
             showGuideView()
         }
     }
 
     override fun initData() {
-//        showProgress(cancel = false)
-//        mViewModel.refreshProjectList()
+        mViewModel.refreshProjectList()
     }
 
     override fun observe() {
         super.observe()
         mViewModel.retResponse.observe(this) {
-            proDialogDismiss()
-        }
-        mViewModel.retError.observe(this) {
-            Terror(it.toString())
+            Log.v("thss",it.toString())
         }
     }
 
@@ -46,9 +45,9 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
         AppManager.instance.doubleBackToExit()
     }
 
-    fun showGuideView() {
+    private fun showGuideView() {
         GuideBuilder()
-            .setTargetView(binding.baseCy)
+            .setTargetView(mDatabind.baseCy)
             .setAlpha(150)
             .setHighTargetGraphStyle(Component.UNROUNDRECT)
             .addComponent(SimpleComponent().setOnListener {
@@ -67,7 +66,7 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
 
     fun showGuideView2() {
         GuideBuilder()
-            .setTargetView(binding.text)
+            .setTargetView(mDatabind.text)
             .setAlpha(150)
             .setHighTargetGraphStyle(Component.CIRCLE)
             .setOnVisibilityChangedListener(object : GuideBuilder.OnVisibilityChangedListener {
@@ -84,7 +83,7 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
     @SuppressLint("ResourceType")
     fun showGuideView3() {
         GuideBuilder()
-            .setTargetView(binding.textView)
+            .setTargetView(mDatabind.textView)
             .setAlpha(150)
             .setHighTargetCorner(20)
             .setHighTargetPadding(10)
@@ -94,4 +93,6 @@ class MainActivity : BaseVmActivity<TestViewModel>() {
             .setShouldCheckLocInWindow(false)
             .show(this@MainActivity)
     }
+
+
 }

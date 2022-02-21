@@ -1,26 +1,25 @@
 package com.jiangcm.baselib.main
 
 import androidx.lifecycle.MutableLiveData
-import com.jiangcm.common.base.AppBaseViewModel
+import com.jiangcm.base.base.vm.BaseViewModel
+import com.jiangcm.base.network.ResultState
+import com.jiangcm.common.bean.DemoResponse
 
-class TestViewModel : AppBaseViewModel() {
+class TestViewModel : BaseViewModel() {
     companion object {
         const val INITIAL_PAGE = 0
     }
+
     private val detailRepository by lazy { MainRepository() }
 
-    val retResponse = MutableLiveData<Any?>()
-    val retError = MutableLiveData<Any?>()
+    val retResponse = MutableLiveData<ResultState<DemoResponse>>()
 
     fun refreshProjectList() {
         launch(
             block = {
-                val pagination = detailRepository.getProjectList(INITIAL_PAGE)
-                retResponse.value = pagination
+                detailRepository.getProjectList(INITIAL_PAGE)
             },
-            error = {
-                retError.value = it
-            }
+            resultState = retResponse, isShowDialog = true
         )
     }
 }

@@ -1,11 +1,17 @@
-package com.jiangcm.base.base
+package com.jiangcm.base.base.activity
 
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.CheckResult
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.jiangcm.base.R
+import com.jiangcm.base.base.vm.BaseViewModel
 import com.jiangcm.base.dialog.ProgressView
 import com.jiangcm.base.dialog.ProgressViewImpl
 import com.jiangcm.base.ext.immersiveStatusBar
@@ -16,13 +22,24 @@ import com.jiangcm.base.lifecycle.*
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
-abstract class BaseLifecycleActivity : AppCompatActivity(), LifecycleProvider<ActivityEvent>, ProgressView {
+abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity(),
+    LifecycleProvider<ActivityEvent>, ProgressView {
 
     //是否沉浸式,默认沉浸式
     var isTranslucentStatus: Boolean = true
 
     //沉浸后是否留出状态栏高度，默认不留高度
     var fitSystemWindows: Boolean = false
+
+    protected open lateinit var mViewModel: VM
+
+    /**
+     * 是否需要使用DataBinding 供子类BaseVmDbActivity修改，用户请慎动
+     */
+    private var isUserDb = false
+
+
+    abstract fun layoutId(): Int
 
     private val progressViewImpl: ProgressViewImpl by lazy {
         ProgressViewImpl(this)
@@ -32,9 +49,66 @@ abstract class BaseLifecycleActivity : AppCompatActivity(), LifecycleProvider<Ac
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleSubject.onNext(ActivityEvent.CREATE)
+        if (!isUserDb) {
+            setContentView(layoutId())
+        } else {
+            initDataBind()
+        }
+        init(savedInstanceState)
     }
 
 
+    private fun init(savedInstanceState: Bundle?) {
+        initViewModel()
+        registerUiChange()
+        observe()
+        initView(savedInstanceState)
+        initData()
+        setTranslucentStatus()
+    }
+    /**
+     * 注册 UI 事件
+     */
+    private fun registerUiChange() {
+        //显示弹窗
+        mViewModel.loadingChange.showDialog.observe(this, Observer {
+            showProgress(
+                it.ifEmpty {
+                    "请求网络中..."
+                }
+            )
+        })
+        //关闭弹窗
+        mViewModel.loadingChange.dismissDialog.observe(this, Observer {
+            proDialogDismiss()
+        })
+    }
+    /**
+     * 获取ViewModel的class
+     */
+    protected abstract fun viewModelClass(): Class<VM>
+
+    /**
+     * 初始化ViewModel
+     */
+    private fun initViewModel() {
+        mViewModel = ViewModelProvider(this).get(viewModelClass())
+    }
+
+    fun userDataBinding(isUserDb: Boolean) {
+        this.isUserDb = isUserDb
+    }
+    /**
+     * 订阅，LiveData、Bus
+     */
+    open fun observe() {}
+
+    open fun initView(savedInstanceState: Bundle?) {}
+    open fun initData() {}
+    /**
+     * 供子类BaseVmDbActivity 初始化Databinding操作
+     */
+    open fun initDataBind() {}
 
     /**
      * 加载(转圈)对话框

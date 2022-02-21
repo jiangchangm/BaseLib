@@ -1,5 +1,6 @@
 package com.jiangcm.common.api
 
+import com.jiangcm.common.bean.DemoResponse
 import okhttp3.RequestBody
 import retrofit2.http.*
 
@@ -28,6 +29,6 @@ interface ApiService {
 
     @GET(ApiC.TEST_GET)
     @Headers(RetrofitClient.BaseHeader)
-    suspend fun getProjectList(@Path("page") page: Int): ApiResult<Any>
+    suspend fun getProjectList(@Path("page") page: Int): ApiResult<DemoResponse>
 
 }
