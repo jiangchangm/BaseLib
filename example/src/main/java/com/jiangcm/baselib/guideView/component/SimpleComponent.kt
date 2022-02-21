@@ -10,8 +10,9 @@ class SimpleComponent : Component {
 
     var listener: (() -> Unit?)? = null
 
-    fun setOnListener(listener: () -> Unit?) {
+    fun setOnListener(listener: () -> Unit?):SimpleComponent {
         this.listener = listener
+        return this
     }
 
     override fun getView(inflater: LayoutInflater?): View {

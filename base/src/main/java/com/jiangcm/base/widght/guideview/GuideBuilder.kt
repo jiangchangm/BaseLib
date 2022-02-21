@@ -312,23 +312,35 @@ class GuideBuilder {
         return this
     }
 
+    companion object{
+        @Volatile
+        private var guide: Guide? = null
+
+        fun dismiss(){
+            guide?.dismiss()
+        }
+    }
+
+
     /**
      * 创建Guide，非Fragment版本
      *
      * @return Guide
      */
     fun createGuide(): Guide {
-        val guide = Guide()
-        guide.setComponents(mComponents)
-        guide.setConfiguration(mConfiguration)
-        guide.setCallback(mOnVisibilityChangedListener)
-        guide.setOnSlideListener(mOnSlideListener)
+        guide = Guide()
+        guide?.setComponents(mComponents)
+        guide?.setConfiguration(mConfiguration)
+        guide?.setCallback(mOnVisibilityChangedListener)
+        guide?.setOnSlideListener(mOnSlideListener)
         mComponents = null
         mConfiguration = null
         mOnVisibilityChangedListener = null
         mBuilt = true
-        return guide
+        return guide?:Guide()
     }
+
+
 
     /**
      * 手势滑动监听

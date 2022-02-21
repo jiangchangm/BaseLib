@@ -2,7 +2,6 @@ package com.jiangcm.base.widght.guideview
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
@@ -21,7 +20,7 @@ import com.jiangcm.base.widght.guideview.GuideBuilder.OnSlideListener
  * * [.show] 控制显示； 调用 [.dismiss]让遮罩系统消失。 <br></br>
  *
  */
-class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
+class Guide : View.OnKeyListener, OnTouchListener {
     private var mConfiguration: Configuration? = null
     private var mMaskView: MaskView? = null
     private var mComponents: MutableList<Component>? = null
@@ -45,12 +44,9 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
     fun setOnSlideListener(onSlideListener: OnSlideListener?) {
         mOnSlideListener = onSlideListener
     }
-    /**
-     * 显示遮罩
-     *
-     * @param activity 目标Activity
-     * @param overlay  遮罩层view
-     */
+
+
+
     /**
      * 显示遮罩
      *
@@ -59,12 +55,12 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
     @JvmOverloads
     fun show(activity: Activity, overlay: ViewGroup? = null, flag: Boolean = false) {
         var overlay = overlay
-        mMaskView = onCreateView(activity, overlay,flag)
+        mMaskView = onCreateView(activity, overlay, flag)
         if (overlay == null) {
             overlay = activity.window.decorView as ViewGroup
         }
         if (mMaskView?.parent == null && mConfiguration?.mTargetView != null) {
-            if(mConfiguration?.mTargetView == null){
+            if (mConfiguration?.mTargetView == null) {
                 overlay.addView(mMaskView)
                 if (mConfiguration?.mEnterAnimationId != -1) {
                     val anim =
@@ -85,7 +81,7 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
                         mOnVisibilityChangedListener!!.onShown()
                     }
                 }
-            }else{
+            } else {
                 overlay.addView(mMaskView)
                 if (mConfiguration?.mEnterAnimationId != -1) {
                     val anim =
@@ -118,6 +114,7 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
         vp.removeView(mMaskView)
         onDestroy()
     }
+
 
     /**
      * 隐藏该遮罩并回收资源相关
@@ -156,8 +153,9 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
     /**
      * 根据locInwindow定位后，是否需要判断loc值非0
      */
-    fun setShouldCheckLocInWindow(set: Boolean) {
+    fun setShouldCheckLocInWindow(set: Boolean) :Guide{
         mShouldCheckLocInWindow = set
+        return this
     }
 
     private fun onCreateView(
@@ -262,5 +260,20 @@ class Guide internal constructor() : View.OnKeyListener, OnTouchListener {
          * 滑动临界值
          */
         private const val SLIDE_THRESHOLD = 30
+
+        @Volatile
+        private var mInstance: Guide? = null
+
+        fun getInstance(): Guide {
+            if (mInstance == null) {
+                synchronized(Guide::class.java) {
+                    if (mInstance == null) {
+                        mInstance = Guide()
+                    }
+                }
+            }
+            return mInstance?:Guide()
+        }
+
     }
 }
