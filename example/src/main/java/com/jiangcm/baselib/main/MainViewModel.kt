@@ -12,10 +12,11 @@ class TestViewModel : BaseViewModel() {
 
     private val detailRepository by lazy { MainRepository() }
 
-    val retResponse = MutableLiveData<ResultState<DemoResponse>>()
+    val retResponse = MutableLiveData<DemoResponse>()
+//    val retResponse = MutableLiveData<ResultState<DemoResponse>>()
 
     fun refreshProjectList() {
-        launch(
+        launchData(
             block = {
                 detailRepository.getProjectList(INITIAL_PAGE)
             },

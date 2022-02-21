@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jiangcm.base.callback.livedata.event.EventLiveData
-import com.jiangcm.base.network.BaseResponse
-import com.jiangcm.base.network.ResultState
-import com.jiangcm.base.network.paresException
-import com.jiangcm.base.network.paresResult
+import com.jiangcm.base.network.*
 import kotlinx.coroutines.*
 
 typealias Block<T> = suspend (CoroutineScope) -> T
@@ -21,6 +18,7 @@ open class BaseViewModel : ViewModel() {
     inner class UiLoadingChange {
         //显示加载框
         val showDialog by lazy { EventLiveData<String>() }
+
         //隐藏
         val dismissDialog by lazy { EventLiveData<Boolean>() }
     }
@@ -35,7 +33,7 @@ open class BaseViewModel : ViewModel() {
      * @param loadingMessage 是否显示加载框
      * @return Job
      */
-    protected fun<T> launch(
+    protected fun <T> launch(
         block: suspend () -> BaseResponse<T>,
         resultState: MutableLiveData<ResultState<T>>,
         isShowDialog: Boolean = false,
@@ -52,6 +50,26 @@ open class BaseViewModel : ViewModel() {
             }.onFailure {
                 loadingChange.dismissDialog.postValue(false)
                 resultState.paresException(it)
+            }
+        }
+    }
+
+    protected fun <T> launchData(
+        block: suspend () -> BaseResponse<T>,
+        resultState: MutableLiveData<T>,
+        isShowDialog: Boolean = false,
+        loadingMessage: String = "loading..."
+    ): Job {
+        return viewModelScope.launch {
+            runCatching {
+                if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
+                //请求体
+                block()
+            }.onSuccess { result ->
+                loadingChange.dismissDialog.postValue(false)
+                resultState.value = result.getResponseData()
+            }.onFailure {
+                loadingChange.dismissDialog.postValue(false)
             }
         }
     }
