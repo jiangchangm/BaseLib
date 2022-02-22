@@ -7,7 +7,7 @@ object AndroidConfig {
 
     //版本号和版本名称
     const val versionCode = 1
-    const val versionName = "1.0.0"
+    const val versionName = "1.0.0.0"
 
     const val AndroidJUnitRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
