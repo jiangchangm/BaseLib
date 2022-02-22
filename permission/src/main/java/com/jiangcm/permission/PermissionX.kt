@@ -35,9 +35,13 @@ object PermissionX {
      * @return True if this permission is granted, False otherwise.
      */
     fun isGranted(context: Context?, permission: String?): Boolean {
-        return ContextCompat.checkSelfPermission(
-            context!!,
-            permission!!
-        ) == PackageManager.PERMISSION_GRANTED
+        return context?.let {
+            permission?.let { it1 ->
+                ContextCompat.checkSelfPermission(
+                    it,
+                    it1
+                )
+            }
+        } == PackageManager.PERMISSION_GRANTED
     }
 }
