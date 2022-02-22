@@ -25,9 +25,10 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
      */
     private var forwardToSettingsScope = ForwardScope(pb, this)
 
-    override fun getExplainScope() = explainReasonScope
+    override var explainScope: ExplainScope = explainReasonScope
 
-    override fun getForwardScope() = forwardToSettingsScope
+    override var forwardScope: ForwardScope = forwardToSettingsScope
+
 
     @SuppressLint("ObsoleteSdkInt")
     override fun finish() {
@@ -39,16 +40,19 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
             deniedList.addAll(pb.permanentDeniedPermissions)
             deniedList.addAll(pb.permissionsWontRequest)
             if (pb.shouldRequestBackgroundLocationPermission()) {
-                if (PermissionX.isGranted(pb.activity,
+                if (PermissionX.isGranted(
+                        pb.activity,
                         RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION
-                    )) {
+                    )
+                ) {
                     pb.grantedPermissions.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                 } else {
                     deniedList.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                 }
             }
             if (pb.shouldRequestSystemAlertWindowPermission()
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pb.targetSdkVersion >= Build.VERSION_CODES.M) {
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pb.targetSdkVersion >= Build.VERSION_CODES.M
+            ) {
                 if (Settings.canDrawOverlays(pb.activity)) {
                     pb.grantedPermissions.add(Manifest.permission.SYSTEM_ALERT_WINDOW)
                 } else {
@@ -56,7 +60,8 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
                 }
             }
             if (pb.shouldRequestWriteSettingsPermission()
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pb.targetSdkVersion >= Build.VERSION_CODES.M) {
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pb.targetSdkVersion >= Build.VERSION_CODES.M
+            ) {
                 if (Settings.System.canWrite(pb.activity)) {
                     pb.grantedPermissions.add(Manifest.permission.WRITE_SETTINGS)
                 } else {
@@ -65,7 +70,8 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
             }
             if (pb.shouldRequestManageExternalStoragePermission()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-                    Environment.isExternalStorageManager()) {
+                    Environment.isExternalStorageManager()
+                ) {
                     pb.grantedPermissions.add(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
                 } else {
                     deniedList.add(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
@@ -83,7 +89,11 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
                 }
             }
             if (pb.requestCallback != null) {
-                pb.requestCallback!!.onResult(deniedList.isEmpty(), ArrayList(pb.grantedPermissions), deniedList)
+                pb.requestCallback!!.onResult(
+                    deniedList.isEmpty(),
+                    ArrayList(pb.grantedPermissions),
+                    deniedList
+                )
             }
             // Remove the InvisibleFragment from current Activity after request finished.
             pb.removeInvisibleFragment()

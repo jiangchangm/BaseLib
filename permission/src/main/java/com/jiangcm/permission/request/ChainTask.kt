@@ -1,35 +1,32 @@
-package com.jiangcm.permission.request;
+package com.jiangcm.permission.request
 
-import java.util.List;
-
-public interface ChainTask {
-
+interface ChainTask {
     /**
      * Get the ExplainScope for showing RequestReasonDialog.
      * @return Instance of ExplainScope.
      */
-    ExplainScope getExplainScope();
+    var explainScope: ExplainScope
 
     /**
      * Get the ForwardScope for showing ForwardToSettingsDialog.
      * @return Instance of ForwardScope.
      */
-    ForwardScope getForwardScope();
+    var forwardScope: ForwardScope
 
     /**
      * Do the request logic.
      */
-    void request();
+    fun request()
 
     /**
      * Request permissions again when user denied.
      * @param permissions
-     *          Permissions to request again.
+     * Permissions to request again.
      */
-    void requestAgain(List<String> permissions);
+    fun requestAgain(permissions: List<String>)
 
     /**
      * Finish this task and notify the request result.
      */
-    void finish();
+    fun finish()
 }
