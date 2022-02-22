@@ -2,11 +2,9 @@ package com.jiangcm.baselib.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import com.jiangcm.base.base.activity.BaseVmDbActivity
 import com.jiangcm.common.core.AppManager
 import com.jiangcm.baselib.databinding.ActivityMainBinding
-import com.jiangcm.base.ext.Terror
 import com.jiangcm.base.ext.Tnormal
 import com.jiangcm.base.widght.guideview.Component
 import com.jiangcm.base.widght.guideview.GuideBuilder
