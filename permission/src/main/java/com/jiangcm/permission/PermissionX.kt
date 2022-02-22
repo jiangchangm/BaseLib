@@ -36,10 +36,10 @@ object PermissionX {
      */
     fun isGranted(context: Context?, permission: String?): Boolean {
         return context?.let {
-            permission?.let { it1 ->
+            permission?.let {
                 ContextCompat.checkSelfPermission(
-                    it,
-                    it1
+                    context,
+                    permission
                 )
             }
         } == PackageManager.PERMISSION_GRANTED
