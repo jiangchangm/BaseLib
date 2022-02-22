@@ -10,7 +10,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.jiangcm.permission.callback.RequestCallback
 import com.jiangcm.permission.dialog.RationaleDialog
 import com.jiangcm.permission.dialog.RationaleDialogFragment
 import com.jiangcm.permission.dialog.DefaultDialog
@@ -130,7 +129,7 @@ class PermissionBuilder(
      * The callback for [.request] method. Can not be null.
      */
     @JvmField
-    var requestCallback: RequestCallback? = null
+    var requestCallback: ((allGranted: Boolean, grantedList: List<String?>, deniedList: List<String?>)->Unit)? = null
 
     /**
      * The callback for [.onExplainRequestReason] method. Maybe null.
@@ -225,7 +224,7 @@ class PermissionBuilder(
      *
      * @param callback Callback with 3 params. allGranted, grantedList, deniedList.
      */
-    fun request(callback: RequestCallback?) {
+    fun request(callback: ((allGranted: Boolean, grantedList: List<String?>, deniedList: List<String?>)->Unit)?) {
         requestCallback = callback
         // Lock the orientation when requesting permissions, or callback maybe missed due to
         // activity destroyed.

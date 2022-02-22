@@ -89,7 +89,7 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
                 }
             }
             if (pb.requestCallback != null) {
-                pb.requestCallback!!.onResult(
+                pb.requestCallback?.invoke(
                     deniedList.isEmpty(),
                     ArrayList(pb.grantedPermissions),
                     deniedList
