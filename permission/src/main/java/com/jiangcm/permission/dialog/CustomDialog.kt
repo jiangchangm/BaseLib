@@ -67,17 +67,13 @@ class CustomDialog(
         }
     }
 
-    override fun getNegativeButton(): View {
-        return binding.negativeBtn
-    }
+    override val negativeButton: View = binding.negativeBtn
 
-    override fun getPositiveButton(): View {
-        return binding.positiveBtn
-    }
 
-    override fun getPermissionsToRequest(): List<String> {
-        return permissions
-    }
+    override val positiveButton: View = binding.positiveBtn
+
+    override val permissionsToRequest: List<String> = permissions
+
 
     private fun buildPermissionsLayout() {
         for (permission in permissions) {

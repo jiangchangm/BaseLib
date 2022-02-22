@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.widget.Button
 import com.jiangcm.permission.R
 import com.jiangcm.permission.databinding.PermissionxDefaultDialogLayoutBinding
 import com.jiangcm.permission.databinding.PermissionxPermissionItemBinding
@@ -33,32 +34,13 @@ class DefaultDialog(context: Context,
         setupWindow()
     }
 
-    /**
-     * Provide the positive button instance to continue requesting.
-     * @return Positive button instance to continue requesting.
-     */
-    override fun getPositiveButton(): View {
-        return binding.positiveBtn
+    override val positiveButton: View = binding.positiveBtn
+
+    override val negativeButton: Button? =negativeText?.let {
+         binding.negativeBtn
     }
 
-    /**
-     * Provide the negative button instance to abort requesting.
-     * This is alternative. If negativeText is null we just return null, means all these permissions are necessary.
-     * @return Negative button instance to abort requesting. Or null if all these permissions are necessary.
-     */
-    override fun getNegativeButton(): View? {
-        return negativeText?.let {
-            return binding.negativeBtn
-        }
-    }
-
-    /**
-     * Provide the permissions to request again.
-     * @return Permissions to request again.
-     */
-    override fun getPermissionsToRequest(): List<String> {
-        return permissions
-    }
+    override val permissionsToRequest: List<String> = permissions
 
     /**
      * Check if the permission layout if empty.
