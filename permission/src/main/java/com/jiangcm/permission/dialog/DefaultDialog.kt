@@ -128,8 +128,10 @@ class DefaultDialog(context: Context,
                         itemBinding.permissionIcon.setImageResource(R.drawable.permissionx_ic_install)
                     }
                     else -> {
-                        itemBinding.permissionText.text = context.getString(context.packageManager.getPermissionGroupInfo(permissionGroup!!, 0).labelRes)
-                        itemBinding.permissionIcon.setImageResource(context.packageManager.getPermissionGroupInfo(permissionGroup, 0).icon)
+                        permissionGroup?.let {
+                            itemBinding.permissionText.text = context.getString(context.packageManager.getPermissionGroupInfo(permissionGroup, 0).labelRes)
+                            itemBinding.permissionIcon.setImageResource(context.packageManager.getPermissionGroupInfo(permissionGroup, 0).icon)
+                        }
                     }
                 }
                 if (isDarkTheme()) {

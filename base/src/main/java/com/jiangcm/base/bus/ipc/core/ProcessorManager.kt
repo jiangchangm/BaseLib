@@ -8,7 +8,7 @@ import java.util.*
 
 class ProcessorManager {
 
-    companion object{
+    companion object {
         private object SingletonHolder {
             val INSTANCE = ProcessorManager()
         }
@@ -21,7 +21,7 @@ class ProcessorManager {
     private var baseProcessors: List<Processor>? = null
     private var processorMap: MutableMap<String, Processor>? = null
 
-    init{
+    init {
         baseProcessors = LinkedList(
             listOf(
                 StringProcessor(),
@@ -53,7 +53,7 @@ class ProcessorManager {
         if (config != null) {
             val processorType: Class<out Processor> = config.processor as Class<out Processor>
             val processorTypeName = processorType.name
-            if (!processorMap!!.containsKey(processorTypeName)) {
+            if (processorMap?.containsKey(processorTypeName) == false) {
                 try {
                     processorMap!![processorTypeName] = processorType.newInstance()
                 } catch (e: Exception) {

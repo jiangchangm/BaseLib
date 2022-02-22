@@ -27,9 +27,9 @@ internal class RequestBackgroundLocationPermission internal constructor(permissi
                     val requestList = mutableListOf(ACCESS_BACKGROUND_LOCATION)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.invoke(explainScope, requestList, true)
+                        pb.explainReasonCallbackWithBeforeParam?.invoke(explainScope, requestList, true)
                     } else {
-                        pb.explainReasonCallback!!.invoke(explainScope, requestList)
+                        pb.explainReasonCallback?.invoke(explainScope, requestList)
                     }
                 } else {
                     // No implementation of explainReasonCallback, so we have to request ACCESS_BACKGROUND_LOCATION without explanation.

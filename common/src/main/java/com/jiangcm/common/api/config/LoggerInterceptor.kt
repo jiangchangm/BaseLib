@@ -100,7 +100,7 @@ class LoggerInterceptor(private val tag:String="OkHttpUtils", private val showRe
         return try {
             val copy = request.newBuilder().build()
             val buffer = Buffer()
-            copy.body()!!.writeTo(buffer)
+            copy.body()?.writeTo(buffer)
             buffer.readUtf8()
         } catch (e: NullPointerException) {
             e.printStackTrace()

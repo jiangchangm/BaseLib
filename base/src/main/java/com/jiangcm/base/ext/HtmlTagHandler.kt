@@ -50,8 +50,7 @@ class HtmlTagHandler(tagName: String) : Html.TagHandler {
 
         // 获取对应的属性值
         val color = attributes["color"]
-        var size = attributes["size"]
-        size = size!!.split("px".toRegex()).toTypedArray()[0]
+        val size = attributes["size"]?.split("px".toRegex())?.toTypedArray()?.get(0)
 
         // 设置颜色
         if (!TextUtils.isEmpty(color)) {
@@ -63,7 +62,7 @@ class HtmlTagHandler(tagName: String) : Html.TagHandler {
         // 设置字体大小
         if (!TextUtils.isEmpty(size)) {
             output.setSpan(
-                AbsoluteSizeSpan(size.toInt()), startIndex, endIndex,
+                size?.toInt()?.let { AbsoluteSizeSpan(it) }, startIndex, endIndex,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }

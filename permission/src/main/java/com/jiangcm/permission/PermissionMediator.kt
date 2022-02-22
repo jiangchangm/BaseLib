@@ -32,9 +32,9 @@ class PermissionMediator {
         val specialPermissionSet = LinkedHashSet<String>()
         val osVersion = Build.VERSION.SDK_INT
         val targetSdkVersion = if (activity != null) {
-            activity!!.applicationInfo.targetSdkVersion
+            activity?.applicationInfo?.targetSdkVersion
         } else {
-            fragment!!.requireContext().applicationInfo.targetSdkVersion
+            fragment?.requireContext()?.applicationInfo?.targetSdkVersion
         }
         for (permission in permissions) {
             if (permission in allSpecialPermissions) {
@@ -44,12 +44,14 @@ class PermissionMediator {
             }
         }
         if (RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION in specialPermissionSet) {
-            if (osVersion == Build.VERSION_CODES.Q ||
-                (osVersion == Build.VERSION_CODES.R && targetSdkVersion < Build.VERSION_CODES.R)) {
-                // If we request ACCESS_BACKGROUND_LOCATION on Q or on R but targetSdkVersion below R,
-                // We don't need to request specially, just request as normal permission.
-                specialPermissionSet.remove(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
-                normalPermissionSet.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
+            if (targetSdkVersion != null) {
+                if (osVersion == Build.VERSION_CODES.Q ||
+                    (osVersion == Build.VERSION_CODES.R && targetSdkVersion < Build.VERSION_CODES.R)) {
+                    // If we request ACCESS_BACKGROUND_LOCATION on Q or on R but targetSdkVersion below R,
+                    // We don't need to request specially, just request as normal permission.
+                    specialPermissionSet.remove(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
+                    normalPermissionSet.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
+                }
             }
         }
         return PermissionBuilder(activity, fragment, normalPermissionSet, specialPermissionSet)
