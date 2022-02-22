@@ -10,9 +10,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.jiangcm.permission.callback.ExplainReasonCallback
-import com.jiangcm.permission.callback.ExplainReasonCallbackWithBeforeParam
-import com.jiangcm.permission.callback.ForwardToSettingsCallback
 import com.jiangcm.permission.callback.RequestCallback
 import com.jiangcm.permission.dialog.RationaleDialog
 import com.jiangcm.permission.dialog.RationaleDialogFragment
@@ -139,14 +136,21 @@ class PermissionBuilder(
      * The callback for [.onExplainRequestReason] method. Maybe null.
      */
     @JvmField
-    var explainReasonCallback: ExplainReasonCallback? = null
+    var explainReasonCallback: ((scope: ExplainScope, deniedList: List<String>) -> Unit?)? = null
+
+    /**
+     * The callback for [.onExplainRequestReason] method, but with beforeRequest param. Maybe null.
+     */
+    @JvmField
+    var explainReasonCallbackWithBeforeParam: ((scope: ExplainScope, deniedList: List<String>, beforeRequest: Boolean) -> Unit?)? =
+        null
 
 
     /**
      * The callback for [.onForwardToSettings] method. Maybe null.
      */
     @JvmField
-    var forwardToSettingsCallback: ForwardToSettingsCallback? = null
+    var forwardToSettingsCallback: ((scope: ForwardScope, deniedList: List<String>)->Unit?)? = null
 
     /**
      * Called when permissions need to explain request reason.
@@ -156,17 +160,10 @@ class PermissionBuilder(
      * @param callback Callback with permissions denied by user.
      * @return PermissionBuilder itself.
      */
-    fun onExplainRequestReason(callback: ExplainReasonCallback?): PermissionBuilder {
+    fun onExplainRequestReason(callback: (scope: ExplainScope, deniedList: List<String>) -> Unit?): PermissionBuilder {
         explainReasonCallback = callback
         return this
     }
-
-    /**
-     * The callback for [.onExplainRequestReason] method, but with beforeRequest param. Maybe null.
-     */
-    @JvmField
-    var explainReasonCallbackWithBeforeParam: ((scope: ExplainScope, deniedList: List<String>, beforeRequest: Boolean) -> Unit?)? =
-        null
 
     /**
      * Called when permissions need to explain request reason.
@@ -191,7 +188,7 @@ class PermissionBuilder(
      * @param callback Callback with permissions denied and checked never ask again by user.
      * @return PermissionBuilder itself.
      */
-    fun onForwardToSettings(callback: ForwardToSettingsCallback?): PermissionBuilder {
+    fun onForwardToSettings(callback: ((scope: ForwardScope, deniedList: List<String>)->Unit?)?): PermissionBuilder {
         forwardToSettingsCallback = callback
         return this
     }

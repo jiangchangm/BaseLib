@@ -243,14 +243,14 @@ class InvisibleFragment : Fragment() {
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, ArrayList(pb.deniedPermissions), false)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(task.explainScope, ArrayList(pb.deniedPermissions))
+                        pb.explainReasonCallback!!.invoke(task.explainScope, ArrayList(pb.deniedPermissions))
                     }
                     // store these permanently denied permissions or they will be lost when request again.
                     pb.tempPermanentDeniedPermissions.addAll(forwardList)
                 } else if (pb.forwardToSettingsCallback != null && (forwardList.isNotEmpty() || pb.tempPermanentDeniedPermissions.isNotEmpty())) {
                     shouldFinishTheTask = false // shouldn't because ForwardToSettingsCallback handles it
                     pb.tempPermanentDeniedPermissions.clear() // no need to store them anymore once onForwardToSettings callback.
-                    pb.forwardToSettingsCallback!!.onForwardToSettings(task.forwardScope, ArrayList(pb.permanentDeniedPermissions))
+                    pb.forwardToSettingsCallback!!.invoke(task.forwardScope, ArrayList(pb.permanentDeniedPermissions))
                 }
                 // If showRequestReasonDialog or showForwardToSettingsDialog is not called. We should finish the task.
                 // There's case that ExplainReasonCallback or ForwardToSettingsCallback is called, but developer didn't invoke
@@ -293,13 +293,13 @@ class InvisibleFragment : Fragment() {
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, permissionsToExplain, false)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(task.explainScope, permissionsToExplain)
+                        pb.explainReasonCallback!!.invoke(task.explainScope, permissionsToExplain)
                     }
                 } else if (pb.forwardToSettingsCallback != null && !shouldShowRationale) {
                     goesToRequestCallback = false // shouldn't because ForwardToSettingsCallback handles it
                     val permissionsToForward: MutableList<String> = ArrayList()
                     permissionsToForward.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
-                    pb.forwardToSettingsCallback!!.onForwardToSettings(task.forwardScope, permissionsToForward)
+                    pb.forwardToSettingsCallback!!.invoke(task.forwardScope, permissionsToForward)
                 }
                 // If showRequestReasonDialog or showForwardToSettingsDialog is not called. We should finish the task.
                 // There's case that ExplainReasonCallback or ForwardToSettingsCallback is called, but developer didn't invoke
@@ -327,7 +327,7 @@ class InvisibleFragment : Fragment() {
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.SYSTEM_ALERT_WINDOW), false)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(
+                        pb.explainReasonCallback!!.invoke(
                             task.explainScope, listOf(Manifest.permission.SYSTEM_ALERT_WINDOW))
                     }
                 }
@@ -352,7 +352,7 @@ class InvisibleFragment : Fragment() {
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.WRITE_SETTINGS), false)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(
+                        pb.explainReasonCallback!!.invoke(
                             task.explainScope, listOf(Manifest.permission.WRITE_SETTINGS))
                     }
                 }
@@ -376,7 +376,7 @@ class InvisibleFragment : Fragment() {
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE), false)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(
+                        pb.explainReasonCallback!!.invoke(
                             task.explainScope, listOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE))
                     }
                 }
@@ -400,7 +400,7 @@ class InvisibleFragment : Fragment() {
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.REQUEST_INSTALL_PACKAGES), false)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(
+                        pb.explainReasonCallback!!.invoke(
                             task.explainScope, listOf(Manifest.permission.REQUEST_INSTALL_PACKAGES))
                     }
                 }

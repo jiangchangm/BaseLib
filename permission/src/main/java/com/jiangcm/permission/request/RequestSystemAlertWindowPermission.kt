@@ -23,7 +23,7 @@ internal class RequestSystemAlertWindowPermission internal constructor(permissio
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                         pb.explainReasonCallbackWithBeforeParam!!.invoke(explainScope, requestList, true)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                        pb.explainReasonCallback!!.invoke(explainScope, requestList)
                     }
                 } else {
                     // No implementation of explainReasonCallback, we can't request
