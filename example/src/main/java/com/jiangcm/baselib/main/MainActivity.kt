@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jiangcm.base.base.activity.BaseVmDbActivity
 import com.jiangcm.common.core.AppManager
 import com.jiangcm.baselib.databinding.ActivityMainBinding
@@ -12,12 +13,14 @@ import com.jiangcm.base.ext.Tnormal
 import com.jiangcm.base.widght.guideview.Component
 import com.jiangcm.base.widght.guideview.GuideBuilder
 import com.jiangcm.baselib.R
+import com.jiangcm.baselib.c.ARouterPath
 import com.jiangcm.baselib.guideView.component.LottieComponent
 import com.jiangcm.baselib.guideView.component.MutiComponent
 import com.jiangcm.baselib.guideView.component.SimpleComponent
 import com.jiangcm.permission.PermissionX
 import com.jiangcm.permission.dialog.CustomDialogFragment
 
+@Route(path = ARouterPath.MainAc, name = "项目主页Activity")
 class MainActivity : BaseVmDbActivity<TestViewModel,ActivityMainBinding>() {
 
 
