@@ -21,7 +21,7 @@ internal class RequestWriteSettingsPermission internal constructor(permissionBui
                     val requestList = mutableListOf(Manifest.permission.WRITE_SETTINGS)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(explainScope, requestList, true)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
                     }

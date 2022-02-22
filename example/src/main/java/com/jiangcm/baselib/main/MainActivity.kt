@@ -99,7 +99,7 @@ class MainActivity : BaseVmDbActivity<TestViewModel,ActivityMainBinding>() {
                 Manifest.permission.RECORD_AUDIO,
             )
             .setDialogTintColor(Color.parseColor("#1972e8"), Color.parseColor("#8ab6f5"))
-            .onExplainRequestReason { scope, deniedList, beforeRequest ->
+            .onExplainRequestReasonWithBeforeParam { scope, deniedList, beforeRequest ->
                 val message = "Please allow the following permissions in settings"
                 val dialog = CustomDialogFragment(message, deniedList)
                 scope.showRequestReasonDialog(dialog)

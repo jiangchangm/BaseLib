@@ -240,7 +240,7 @@ class InvisibleFragment : Fragment() {
                     shouldFinishTheTask = false // shouldn't because ExplainReasonCallback handles it
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, ArrayList(pb.deniedPermissions), false)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(task.explainScope, ArrayList(pb.deniedPermissions))
@@ -290,7 +290,7 @@ class InvisibleFragment : Fragment() {
                     permissionsToExplain.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, permissionsToExplain, false)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(task.explainScope, permissionsToExplain)
@@ -324,7 +324,7 @@ class InvisibleFragment : Fragment() {
                 } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.SYSTEM_ALERT_WINDOW), false)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(
@@ -349,7 +349,7 @@ class InvisibleFragment : Fragment() {
                 } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.WRITE_SETTINGS), false)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(
@@ -373,7 +373,7 @@ class InvisibleFragment : Fragment() {
                 } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE), false)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(
@@ -397,7 +397,7 @@ class InvisibleFragment : Fragment() {
                 } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(
                             task.explainScope, listOf(Manifest.permission.REQUEST_INSTALL_PACKAGES), false)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(

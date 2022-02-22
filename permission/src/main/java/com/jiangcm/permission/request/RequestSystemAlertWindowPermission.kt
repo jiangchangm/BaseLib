@@ -21,7 +21,7 @@ internal class RequestSystemAlertWindowPermission internal constructor(permissio
                     val requestList = mutableListOf(Manifest.permission.SYSTEM_ALERT_WINDOW)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                        pb.explainReasonCallbackWithBeforeParam!!.invoke(explainScope, requestList, true)
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
                     }

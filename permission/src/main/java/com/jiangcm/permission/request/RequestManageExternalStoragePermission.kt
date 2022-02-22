@@ -17,7 +17,7 @@ internal class RequestManageExternalStoragePermission internal constructor(permi
                 val requestList = mutableListOf(MANAGE_EXTERNAL_STORAGE)
                 if (pb.explainReasonCallbackWithBeforeParam != null) {
                     // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                    pb.explainReasonCallbackWithBeforeParam!!.invoke(explainScope, requestList, true)
                 } else {
                     pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
                 }

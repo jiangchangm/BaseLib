@@ -141,11 +141,6 @@ class PermissionBuilder(
     @JvmField
     var explainReasonCallback: ExplainReasonCallback? = null
 
-    /**
-     * The callback for [.onExplainRequestReason] method, but with beforeRequest param. Maybe null.
-     */
-    @JvmField
-    var explainReasonCallbackWithBeforeParam: ExplainReasonCallbackWithBeforeParam? = null
 
     /**
      * The callback for [.onForwardToSettings] method. Maybe null.
@@ -167,6 +162,13 @@ class PermissionBuilder(
     }
 
     /**
+     * The callback for [.onExplainRequestReason] method, but with beforeRequest param. Maybe null.
+     */
+    @JvmField
+    var explainReasonCallbackWithBeforeParam: ((scope: ExplainScope, deniedList: List<String>, beforeRequest: Boolean) -> Unit?)? =
+        null
+
+    /**
      * Called when permissions need to explain request reason.
      * Typically every time user denies your request would call this method.
      * If you chained [.explainReasonBeforeRequest], this method might run before permission request.
@@ -175,7 +177,7 @@ class PermissionBuilder(
      * @param callback Callback with permissions denied by user.
      * @return PermissionBuilder itself.
      */
-    fun onExplainRequestReason(callback: ExplainReasonCallbackWithBeforeParam?): PermissionBuilder {
+    fun onExplainRequestReasonWithBeforeParam(callback: (scope: ExplainScope, deniedList: List<String>, beforeRequest: Boolean) -> Unit?): PermissionBuilder {
         explainReasonCallbackWithBeforeParam = callback
         return this
     }

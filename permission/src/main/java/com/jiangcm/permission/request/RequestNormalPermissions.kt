@@ -24,7 +24,7 @@ internal class RequestNormalPermissions internal constructor(permissionBuilder: 
             pb.deniedPermissions.addAll(requestList)
             if (pb.explainReasonCallbackWithBeforeParam != null) {
                 // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                pb.explainReasonCallbackWithBeforeParam!!.invoke(explainScope, requestList, true)
             } else {
                 pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
             }
