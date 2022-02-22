@@ -91,7 +91,7 @@ class MainActivity : BaseVmDbActivity<TestViewModel,ActivityMainBinding>() {
             .show(this@MainActivity)
     }
 
-    fun checkPermission(){
+    private fun checkPermission(){
         PermissionX.init(this)
             .permissions(
                 Manifest.permission.CAMERA,
