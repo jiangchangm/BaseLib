@@ -1,4 +1,4 @@
-package com.jiangcm.baselib.main
+package com.jiangcm.baselib.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import com.jiangcm.common.base.AppBaseViewModel

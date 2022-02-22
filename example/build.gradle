@@ -94,6 +94,8 @@ android {
 
     lintOptions {
         abortOnError false
+        disable 'MissingTranslation'
+        disable 'ExtraTranslation'
     }
     packagingOptions {
         exclude 'META-INF/proguard/androidx-annotations.pro'

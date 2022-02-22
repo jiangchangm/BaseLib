@@ -1,4 +1,4 @@
-package com.jiangcm.baselib.main
+package com.jiangcm.baselib.ui.main
 
 import com.jiangcm.common.api.RetrofitClient
 

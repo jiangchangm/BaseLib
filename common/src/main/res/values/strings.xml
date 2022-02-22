@@ -1,0 +1,4 @@
+<resources>
+    <string name="closeImg">close</string>
+    <string name="login_failure_account">您的手机号码尚未注册</string>
+</resources>

@@ -1,4 +1,4 @@
-package com.jiangcm.baselib.guideView.component
+package com.jiangcm.baselib.ui.guideView.component
 
 import android.view.LayoutInflater
 import android.view.View
