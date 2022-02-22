@@ -77,6 +77,7 @@ dependencies {
     api Deps.material
     api Deps.constraintlayout
     api Deps.ereza
+    api Deps.BaseRecyclerViewAdapterHelper
 
     api(Deps.arouterApi) {
         exclude module: 'support-v4'
