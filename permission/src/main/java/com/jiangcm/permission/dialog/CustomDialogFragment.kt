@@ -58,9 +58,8 @@ class CustomDialogFragment() : RationaleDialogFragment() {
 
     private val groupSet = HashSet<String>()
 
-    private var _binding: CustomDialogLayoutBinding? = null
+    private lateinit var binding: CustomDialogLayoutBinding
 
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +67,7 @@ class CustomDialogFragment() : RationaleDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        _binding = CustomDialogLayoutBinding.inflate(inflater, container, false)
+        binding = CustomDialogLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -78,22 +77,14 @@ class CustomDialogFragment() : RationaleDialogFragment() {
         buildPermissionsLayout()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    override val negativeButton: View
+        get() =binding.negativeBtn
 
-    override fun getNegativeButton(): View {
-        return binding.negativeBtn
-    }
+    override val positiveButton: View
+        get() =  binding.positiveBtn
 
-    override fun getPositiveButton(): View {
-        return binding.positiveBtn
-    }
-
-    override fun getPermissionsToRequest(): List<String> {
-        return mPermissions
-    }
+    override val permissionsToRequest: List<String>
+        get() = mPermissions
 
     private fun buildPermissionsLayout() {
         for (permission in mPermissions) {
