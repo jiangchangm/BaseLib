@@ -7,6 +7,7 @@ import com.jiangcm.base.ext.Terror
 import com.jiangcm.base.ext.showToast
 import com.jiangcm.base.network.ApiException
 import com.jiangcm.common.core.AppManager
+import kotlinx.coroutines.CancellationException
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -31,7 +32,9 @@ open class AppBaseViewModel : BaseViewModel() {
                     else -> if (showErrorToast) AppManager.instance.Terror(e.message)
                 }
             }
-            // 网络请求失败
+            is CancellationException->
+                if (showErrorToast) AppManager.instance.showToast(R.string.network_work_failed)
+                // 网络请求失败
             is ConnectException,
             is SocketTimeoutException,
             is UnknownHostException,

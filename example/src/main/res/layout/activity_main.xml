@@ -26,12 +26,23 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
             android:onClick="@{()->click.click()}"
+            android:text="click"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClickRpt="@{()->click.click()}"
+            android:text="clickRpt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/baseRy"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.96" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

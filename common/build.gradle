@@ -78,6 +78,8 @@ dependencies {
     api Deps.constraintlayout
     api Deps.ereza
     api Deps.BaseRecyclerViewAdapterHelper
+    api Deps.kotlinxCoroutines
+    api Deps.kotlinStdlib
 
     api(Deps.arouterApi) {
         exclude module: 'support-v4'

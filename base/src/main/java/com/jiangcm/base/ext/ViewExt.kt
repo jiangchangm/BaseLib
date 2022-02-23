@@ -65,8 +65,8 @@ fun View.visibleOrGone(flag:Boolean) {
  * 设置防止重复点击事件
  * 重写android:onClick 时间间隔 默认1秒
  */
-@BindingAdapter("android:onClick")
-fun View.setOnClick(lis: View.OnClickListener){
+@BindingAdapter("android:onClickRpt")
+fun View.setOnClickRpt(lis: View.OnClickListener){
     onClickStart {
         lis.onClick(this)
         delay(1000)
