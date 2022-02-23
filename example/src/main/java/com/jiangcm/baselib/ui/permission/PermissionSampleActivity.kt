@@ -23,8 +23,14 @@ class PermissionSampleActivity :
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
+        mDatabind.vm =mViewModel
         checkPermission()
     }
+
+    override fun initData() {
+        mViewModel.refreshProjectList()
+    }
+
 
     private fun checkPermission(){
         PermissionX.init(this)

@@ -1,13 +1,22 @@
 package com.jiangcm.base.ext
 
+import UI
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.jiangcm.base.coroutines.ui.contextJob
+import com.jiangcm.base.coroutines.ui.onClick
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.delay
 
 /**
  * 弹出软键盘
@@ -49,6 +58,32 @@ fun View.visibleOrGone(flag:Boolean) {
         View.VISIBLE
     }else{
         View.GONE
+    }
+}
+
+/**
+ * 设置防止重复点击事件
+ * 重写android:onClick 时间间隔 默认1秒
+ */
+@BindingAdapter("android:onClick")
+fun View.setOnClick(lis: View.OnClickListener){
+    onClickStart {
+        lis.onClick(this)
+        delay(1000)
+    }
+}
+
+
+/**
+ * 点击事件会在主线程中处理
+ * 并且会阻止重复点击，避免重复执行，例如登录按钮点击事件处理
+ */
+fun View.onClickStart(action: suspend () -> Unit) {
+    val eventActor = GlobalScope.actor<Unit>(contextJob + UI) {
+        for (event in channel) action()
+    }
+    setOnClickListener {
+        eventActor.trySend(Unit).isSuccess
     }
 }
 
