@@ -29,7 +29,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity(),
     var isTranslucentStatus: Boolean = true
 
     //沉浸后是否留出状态栏高度，默认不留高度
-    var fitSystemWindows: Boolean = false
+    var isfitSystemWindows: Boolean = false
 
     protected open lateinit var mViewModel: VM
 
@@ -143,7 +143,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity(),
         // 判断是否需要沉浸式
         immersiveStatusBar(isTranslucentStatus)
         //当FitsSystemWindows设置 true 时 且为沉浸式时候，会在屏幕最上方预留出状态栏高度的 padding
-        setDecorFitsSystemWindows(isTranslucentStatus && fitSystemWindows)
+        setDecorFitsSystemWindows(isTranslucentStatus && isfitSystemWindows)
         //设置状态栏透明
         setStatusBarColor(Color.TRANSPARENT)
         //一般的手机的状态栏文字和图标都是白色的, 可如果你的应用也是纯白色的, 或导致状态栏文字看不清

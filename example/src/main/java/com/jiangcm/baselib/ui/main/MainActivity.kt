@@ -29,6 +29,7 @@ class MainActivity : BaseActivity<TestViewModel, ActivityMainBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
+        isfitSystemWindows = true
         mDatabind.baseRy.init(LinearLayoutManager(this),homeAdapter)
         mDatabind.click = HomeClick()
     }
@@ -37,7 +38,6 @@ class MainActivity : BaseActivity<TestViewModel, ActivityMainBinding>() {
         super.initData()
         homeAdapter.setList(Const.homeItemData)
     }
-
 
     override fun onBackPressed() {
         AppManager.instance.doubleBackToExit()
