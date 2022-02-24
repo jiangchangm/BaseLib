@@ -12,13 +12,18 @@ class TestViewModel : AppBaseViewModel() {
     private val detailRepository by lazy { MainRepository() }
 
     val retResponse = MutableLiveData<DemoResponse>()
+    val error = MutableLiveData<Boolean>()
 
     fun refreshProjectList() {
         launchDataCheck(
             block = {
                 detailRepository.getProjectList(INITIAL_PAGE)
             },
-            resultState = retResponse, isShowDialog = true
+            resultState = retResponse,
+            isShowDialog = true,
+            error = {
+                error.value = true
+            }
         )
     }
 }

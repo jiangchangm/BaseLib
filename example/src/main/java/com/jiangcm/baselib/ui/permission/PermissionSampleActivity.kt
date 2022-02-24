@@ -3,8 +3,10 @@ package com.jiangcm.baselib.ui.permission
 import android.Manifest
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.jiangcm.base.ext.Terror
 import com.jiangcm.baselib.R
 import com.jiangcm.baselib.c.ARouterPath
 import com.jiangcm.baselib.databinding.ActivityPermissionSampleBinding
@@ -30,7 +32,6 @@ class PermissionSampleActivity :
     override fun initData() {
         mViewModel.refreshProjectList()
     }
-
 
     private fun checkPermission(){
         PermissionX.init(this)
