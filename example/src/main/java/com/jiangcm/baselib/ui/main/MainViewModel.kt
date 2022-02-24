@@ -20,10 +20,7 @@ class TestViewModel : AppBaseViewModel() {
                 detailRepository.getProjectList(INITIAL_PAGE)
             },
             resultState = retResponse,
-            isShowDialog = true,
-            error = {
-                error.value = true
-            }
+            isShowDialog = true
         )
     }
 }

@@ -8,7 +8,6 @@ import com.jiangcm.base.network.*
 import kotlinx.coroutines.*
 
 typealias Block<T> = suspend (CoroutineScope) -> T
-typealias Error = suspend () -> Unit
 
 open class BaseViewModel : ViewModel() {
 
@@ -36,7 +35,6 @@ open class BaseViewModel : ViewModel() {
     protected fun <T> launchData(
         block: suspend () -> BaseResponse<T>,
         resultState: MutableLiveData<T>,
-        error: Error? = null,
         isShowDialog: Boolean = false,
         showErrorToast: Boolean = true,
         loadingMessage: String = "loading..."
@@ -51,7 +49,6 @@ open class BaseViewModel : ViewModel() {
                 resultState.value = result.getResponseData()
             }.onFailure {throwable->
                 loadingChange.dismissDialog.postValue(false)
-                error?.invoke()
                 onError(throwable as Exception, showErrorToast)
             }
         }
@@ -60,7 +57,6 @@ open class BaseViewModel : ViewModel() {
     protected fun <T> launchDataCheck(
         block: suspend () -> BaseResponse<T>,
         resultState: MutableLiveData<T>,
-        error: Error? = null,
         isShowDialog: Boolean = false,
         showErrorToast: Boolean = true,
         loadingMessage: String = "loading..."
@@ -79,12 +75,10 @@ open class BaseViewModel : ViewModel() {
                     }
                 }.onFailure { e ->
                     //失败回调
-                    error?.invoke()
                     onError(e as Exception, showErrorToast)
                 }
             }.onFailure {throwable->
                 loadingChange.dismissDialog.postValue(false)
-                error?.invoke()
                 onError(throwable as Exception, showErrorToast)
             }
         }
