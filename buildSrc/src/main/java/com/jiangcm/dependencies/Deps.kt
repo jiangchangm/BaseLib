@@ -26,7 +26,6 @@ object DepsVersion {
     const val mmkv = "1.2.12"
 }
 
-
 object Deps {
     //kotlin
     const val kotlinStdlib =
