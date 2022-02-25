@@ -23,6 +23,7 @@ object DepsVersion {
     const val ereza = "2.3.0"
     const val lottie = "4.2.1"
     const val materialDialogs = "3.3.0"
+    const val mmkv = "1.2.12"
 }
 
 
@@ -92,6 +93,9 @@ object Deps {
 
     //lottie动画
     const val lottie = "com.airbnb.android:lottie:${DepsVersion.lottie}"
+
+    // 微信开源项目，替代SP
+    val mmkv = "com.tencent:mmkv:${DepsVersion.mmkv}"
 }
 
 object Material {
