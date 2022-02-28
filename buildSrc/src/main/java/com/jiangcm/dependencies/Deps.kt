@@ -26,6 +26,7 @@ object DepsVersion {
     const val materialDialogs = "3.3.0"
     const val mmkv = "1.2.12"
     const val navigationVersion = "2.4.1"
+    const val glideSdkVersion = "4.9.0"
 }
 
 object Deps {
@@ -100,7 +101,11 @@ object Deps {
     const val lottie = "com.airbnb.android:lottie:${DepsVersion.lottie}"
 
     // 微信开源项目，替代SP
-    val mmkv = "com.tencent:mmkv:${DepsVersion.mmkv}"
+    const val mmkv = "com.tencent:mmkv:${DepsVersion.mmkv}"
+    //图片
+    const val glide = "com.github.bumptech.glide:glide:${DepsVersion.glideSdkVersion}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${DepsVersion.glideSdkVersion}"
+    const val glideLoaderOkhttp3 = "com.github.bumptech.glide:okhttp3-integration:${DepsVersion.glideSdkVersion}"
 }
 
 object Material {

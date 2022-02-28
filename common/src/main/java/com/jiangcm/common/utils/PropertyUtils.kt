@@ -11,6 +11,8 @@ import java.util.*
 object PropertyUtils {
 
     const val BASE_API_URL = "api"
+    const val RESIZE_W = "resizeW"
+    const val RESIZE_H = "resizeH"
     const val IS_DEBUG = "isDebug"
 
     private var cacheMap = mutableMapOf<String, String>()

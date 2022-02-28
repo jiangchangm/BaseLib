@@ -81,6 +81,10 @@ dependencies {
     api Deps.kotlinxCoroutines
     api Deps.kotlinStdlib
 
+    api Deps.glide
+    api Deps.glideCompiler
+    api Deps.glideLoaderOkhttp3
+
     api(Deps.arouterApi) {
         exclude module: 'support-v4'
     }
