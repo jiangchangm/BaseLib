@@ -1,5 +1,6 @@
 package com.jiangcm.dependencies
 
+
 object DepsVersion {
     const val kotlinVersion = "1.6.10"
     const val kotlinxCoroutinesVersion = "1.6.0"
@@ -24,6 +25,7 @@ object DepsVersion {
     const val lottie = "4.2.1"
     const val materialDialogs = "3.3.0"
     const val mmkv = "1.2.12"
+    const val navigationVersion = "2.4.1"
 }
 
 object Deps {
@@ -39,6 +41,10 @@ object Deps {
     const val fragment = "androidx.fragment:fragment-ktx:${DepsVersion.fragmentVersion}"
     const val constraintlayout =
         "androidx.constraintlayout:constraintlayout:${DepsVersion.constraintlayoutVersion}"
+
+    //navigation
+    const val navigationFragment ="androidx.navigation:navigation-fragment-ktx:${DepsVersion.navigationVersion}"
+    const val navigationUi ="androidx.navigation:navigation-ui-ktx:${DepsVersion.navigationVersion}"
 
     //material
     const val material =

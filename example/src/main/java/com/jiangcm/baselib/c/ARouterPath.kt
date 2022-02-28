@@ -20,6 +20,7 @@ object ARouterPath {
     const val MainAc = "$APP/MainActivity"
     const val GuideSampleAc = "$APP/GuideSampleActivity"
     const val PermissionSampleAc = "$APP/PermissionSampleActivity"
+    const val NavigationButtonAc = "$APP/NavigationButtonActivity"
     const val WebAc = "$APP/WebActivity"
 }
 

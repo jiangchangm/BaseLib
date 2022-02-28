@@ -41,6 +41,7 @@
         <activity android:name=".ui.guideView.GuideSampleActivity"/>
         <activity android:name=".ui.permission.PermissionSampleActivity"/>
         <activity android:name=".ui.WebActivity"/>
+        <activity android:name=".ui.navigationButton.NavigationButtonActivity"/>
     </application>
 
 </manifest>

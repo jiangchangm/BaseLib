@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/test_nav_host"
+    app:startDestination="@id/testFragment1"
+    tools:ignore="MissingDefaultResource">
+
+    <fragment
+        android:id="@+id/testFragment1"
+        android:name="com.jiangcm.baselib.ui.navigationButton.navigationFragment.TestFragment1"
+        android:label="TestFragment1">
+        <action
+            android:id="@+id/action_testFragment1_to_testFragment2"
+            app:destination="@id/testFragment2"
+            app:enterAnim="@anim/slide_right_to_left_in"
+            app:exitAnim="@anim/slide_right_to_left_out"
+            app:popEnterAnim="@anim/slide_left_to_right_in"
+            app:popExitAnim="@anim/slide_left_to_right_out" />
+        <action
+            android:id="@+id/action_testFragment1_to_testFragment3"
+            app:destination="@id/testFragment3"
+            app:enterAnim="@anim/slide_right_to_left_in"
+            app:exitAnim="@anim/slide_right_to_left_out"
+            app:popEnterAnim="@anim/slide_left_to_right_in"
+            app:popExitAnim="@anim/slide_left_to_right_out" />
+        <action
+            android:id="@+id/action_testFragment1_to_webActivity"
+            app:destination="@id/webActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment2"
+        android:name="com.jiangcm.baselib.ui.navigationButton.navigationFragment.TestFragment2"
+        android:label="TestFragment2">
+        <action
+            android:id="@+id/action_testFragment2_to_testFragment42"
+            app:destination="@id/testFragment4"
+            app:enterAnim="@anim/slide_right_to_left_in"
+            app:exitAnim="@anim/slide_right_to_left_out"
+            app:popEnterAnim="@anim/slide_left_to_right_in"
+            app:popExitAnim="@anim/slide_left_to_right_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment3"
+        android:name="com.jiangcm.baselib.ui.navigationButton.navigationFragment.TestFragment3"
+        android:label="TestFragment3">
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment4"
+        android:name="com.jiangcm.baselib.ui.navigationButton.navigationFragment.TestFragment4"
+        android:label="TestFragment4">
+        <action
+            android:id="@+id/action_testFragment4_to_testFragment12"
+            app:destination="@id/testFragment1"
+            app:popUpTo="@id/testFragment1"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_right_to_left_in"
+            app:exitAnim="@anim/slide_right_to_left_out"
+            app:popEnterAnim="@anim/slide_left_to_right_in"
+            app:popExitAnim="@anim/slide_left_to_right_out" />
+    </fragment>
+    <activity
+        android:id="@+id/webActivity"
+        android:name="com.jiangcm.baselib.ui.WebActivity"
+        android:label="WebActivity" />
+</navigation>

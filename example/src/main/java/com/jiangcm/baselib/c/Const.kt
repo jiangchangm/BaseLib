@@ -8,6 +8,7 @@ object Const {
     val homeItemData = arrayListOf(
         HomeEntity("遮罩层基础功能", ARouterPath.GuideSampleAc),
         HomeEntity("权限申请", ARouterPath.PermissionSampleAc),
+        HomeEntity("底部导航栏测试页面", ARouterPath.NavigationButtonAc),
         HomeEntity("外链网页", ARouterPath.WebAc)
     )
 }
