@@ -91,6 +91,27 @@ fun ImageView?.loadImgUrlWithGlide(
     }
 }
 
+fun ImageView?.loadImgUrlWithThumbnailAuto(
+    url: String?,
+    option: RequestOptions,
+    shouldProcess: Boolean = false,
+    shouldCheck: Boolean = true
+) {
+    val process = processImg(this, shouldProcess)
+    val mUrl = if (shouldCheck) {
+        checkUrl(url, process)
+    } else {
+        url
+    }
+    this?.let {
+        Glide.with(it.context).load(mUrl)
+            .apply(option)
+            .thumbnail( 0.1f )
+            .dontAnimate()
+            .into(this)
+    }
+}
+
 fun ImageView?.loadImgUriWithManager(
     glide: RequestManager,
     uri: Uri,

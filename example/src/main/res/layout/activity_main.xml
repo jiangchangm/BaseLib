@@ -37,7 +37,7 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClickRpt="@{()->click.click()}"
+            android:onClickNrt="@{()->click.click()}"
             android:text="clickRpt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

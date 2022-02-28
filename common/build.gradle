@@ -71,21 +71,23 @@ kapt {
 dependencies {
 
     implementation project(path: ':base')
-    api Deps.retrofit
-    api Deps.corektx
-    api Deps.appcompat
-    api Deps.material
-    api Deps.constraintlayout
-    api Deps.ereza
-    api Deps.BaseRecyclerViewAdapterHelper
-    api Deps.kotlinxCoroutines
-    api Deps.kotlinStdlib
+    implementation Deps.retrofit
+    implementation Deps.corektx
+    implementation Deps.appcompat
+    implementation Deps.material
+    implementation Deps.constraintlayout
+    implementation Deps.ereza
+    implementation Deps.BaseRecyclerViewAdapterHelper
+    implementation Deps.kotlinxCoroutines
+    implementation Deps.kotlinStdlib
 
-    api Deps.glide
-    api Deps.glideCompiler
-    api Deps.glideLoaderOkhttp3
+    implementation Deps.glide
+    implementation Deps.glideCompiler
+    implementation Deps.glideLoaderOkhttp3
 
-    api(Deps.arouterApi) {
+    implementation Deps.bigImageViewPager
+
+    implementation(Deps.arouterApi) {
         exclude module: 'support-v4'
     }
     kapt Deps.arouterCompiler

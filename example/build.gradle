@@ -121,10 +121,10 @@ kapt {
 dependencies {
     implementation project(path: ':base')
     implementation project(path: ':common')
-    api Deps.lottie
-    api Deps.navigationFragment
-    api Deps.navigationUi
-    api(Deps.arouterApi) {
+    implementation Deps.lottie
+    implementation Deps.navigationFragment
+    implementation Deps.navigationUi
+    implementation(Deps.arouterApi) {
         exclude module: 'support-v4'
     }
     implementation project(path: ':permission')

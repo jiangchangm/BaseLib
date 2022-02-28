@@ -50,24 +50,24 @@ kapt {
 }
 
 dependencies {
-    api Deps.corektx
-    api Deps.appcompat
-    api Deps.material
+    implementation Deps.corektx
+    implementation Deps.appcompat
+    implementation Deps.material
 
-    api Deps.kotlinxCoroutines
-    api Deps.kotlinStdlib
+    implementation Deps.kotlinxCoroutines
+    implementation Deps.kotlinStdlib
 
-    api Deps.lifecycleLivedataktx
-    api Deps.lifecycleViewmodelKtx
+    implementation Deps.lifecycleLivedataktx
+    implementation Deps.lifecycleViewmodelKtx
 
-    api Deps.rxJava
-    api Deps.jsr305Annotations
+    implementation Deps.rxJava
+    implementation Deps.jsr305Annotations
 
-    api Deps.retrofit
-    api Deps.activity
-    api Deps.retrofitConverterGson
+    implementation Deps.retrofit
+    implementation Deps.activity
+    implementation Deps.retrofitConverterGson
 
-    api(Deps.arouterApi) {
+    implementation(Deps.arouterApi) {
         exclude module: 'support-v4'
     }
     kapt Deps.arouterCompiler
