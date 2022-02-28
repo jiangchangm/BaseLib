@@ -121,9 +121,11 @@ kapt {
 dependencies {
     implementation project(path: ':base')
     implementation project(path: ':common')
+    implementation Deps.BaseRecyclerViewAdapterHelper
     implementation Deps.lottie
     implementation Deps.navigationFragment
     implementation Deps.navigationUi
+    implementation Deps.bigImageViewPager
     implementation(Deps.arouterApi) {
         exclude module: 'support-v4'
     }

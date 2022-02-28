@@ -80,6 +80,7 @@ dependencies {
     implementation Deps.BaseRecyclerViewAdapterHelper
     implementation Deps.kotlinxCoroutines
     implementation Deps.kotlinStdlib
+    implementation Deps.retrofitConverterGson
 
     implementation Deps.glide
     implementation Deps.glideCompiler

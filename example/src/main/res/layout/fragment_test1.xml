@@ -9,6 +9,10 @@
         <variable
             name="vm"
             type="com.jiangcm.baselib.ui.navigationButton.TestFragmentVM" />
+
+        <variable
+            name="click"
+            type="com.jiangcm.baselib.ui.navigationButton.navigationFragment.TestFragment1.ProxyClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +34,8 @@
             android:id="@+id/img"
             android:layout_width="100dp"
             android:layout_height="0dp"
-            app:imageUrl="@{vm.imgPath}"
+            imageUrl="@{vm.imgPath}"
+            android:onClick="@{()->click.checkImg()}"
             android:transitionName="testImg"
             app:layout_constraintDimensionRatio="16:9"
             app:layout_constraintBottom_toBottomOf="parent"

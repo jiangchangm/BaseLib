@@ -18,7 +18,7 @@ fun TextView.setBindingText(text: String?) {
     )
 }
 
-@BindingAdapter("app:imageUrl")
+@BindingAdapter("imageUrl")
 fun loadImage(imageView: ImageView, url: String?) {
     imageView.loadImgUrlWithThumbnailAuto(url, ImgOption.imgOption)
 }
