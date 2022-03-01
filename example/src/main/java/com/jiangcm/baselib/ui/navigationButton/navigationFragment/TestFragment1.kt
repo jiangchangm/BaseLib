@@ -1,7 +1,9 @@
 package com.jiangcm.baselib.ui.navigationButton.navigationFragment
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import androidx.core.app.ActivityOptionsCompat
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import cc.shinichi.library.ImagePreview
@@ -38,7 +40,13 @@ class TestFragment1 : BaseFragment<TestFragmentVM, FragmentTest1Binding>() {
             )
         }
         mDatabind.toTest5.setOnClickListener {
-            findNavController().navigate(R.id.action_testFragment1_to_webActivity)
+            val pair = androidx.core.util.Pair<View, String>(mDatabind.img, "testImg")
+            val option = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), pair)
+            val extras = ActivityNavigator.Extras.Builder().setActivityOptions(option).build()
+            findNavController().navigate(
+                R.id.action_testFragment1_to_testActivity,
+                null, null, extras
+            )
         }
         mViewModel.str.value = "测试1"
         mViewModel.imgPath.value = imgPath

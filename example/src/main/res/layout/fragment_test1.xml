@@ -67,7 +67,7 @@
             android:id="@+id/to_test5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="to_webActivity"
+            android:text="to_testActivity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/to_test3"
             app:layout_constraintTop_toTopOf="parent" />

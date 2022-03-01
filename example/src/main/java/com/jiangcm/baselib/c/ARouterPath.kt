@@ -22,6 +22,7 @@ object ARouterPath {
     const val PermissionSampleAc = "$APP/PermissionSampleActivity"
     const val NavigationButtonAc = "$APP/NavigationButtonActivity"
     const val WebAc = "$APP/WebActivity"
+    const val TestAc = "$APP/TestActivity"
 }
 
 /**

@@ -22,9 +22,8 @@
             app:destination="@id/testFragment3"
             />
         <action
-            android:id="@+id/action_testFragment1_to_webActivity"
-            app:destination="@id/webActivity"
-            />
+            android:id="@+id/action_testFragment1_to_testActivity"
+            app:destination="@id/testActivity" />
     </fragment>
     <fragment
         android:id="@+id/testFragment2"
@@ -58,7 +57,7 @@
             app:popExitAnim="@anim/slide_left_to_right_out" />
     </fragment>
     <activity
-        android:id="@+id/webActivity"
-        android:name="com.jiangcm.baselib.ui.WebActivity"
-        android:label="WebActivity" />
+        android:id="@+id/testActivity"
+        android:name="com.jiangcm.baselib.ui.navigationButton.TestActivity"
+        android:label="TestActivity" />
 </navigation>
