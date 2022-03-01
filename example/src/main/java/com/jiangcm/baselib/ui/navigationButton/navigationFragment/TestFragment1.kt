@@ -1,6 +1,7 @@
 package com.jiangcm.baselib.ui.navigationButton.navigationFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import cc.shinichi.library.ImagePreview
@@ -51,12 +52,12 @@ class TestFragment1 : BaseFragment<TestFragmentVM, FragmentTest1Binding>() {
 
     inner class ProxyClick {
         fun checkImg() {
-            activity?.let {
-                ImagePreview.getInstance().setContext(it)
-                    .setIndex(0)
-                    .setImage(imgPath)
-                    .start()
-            }
+            ImagePreview.getInstance().setContext(requireActivity())
+                .setIndex(0)
+                .setImage(imgPath)
+                .setTransitionView(mDatabind.img)
+                .setTransitionShareElementName("shared_element_container")
+                .start()
         }
     }
 }

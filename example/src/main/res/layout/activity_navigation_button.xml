@@ -4,7 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="MissingConstraints">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="vm"
+            type="com.jiangcm.baselib.ui.main.TestViewModel" />
+
+        <variable
+            name="click"
+            type="com.jiangcm.baselib.ui.navigationButton.NavigationButtonActivity.ProxyClick" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +27,23 @@
             android:layout_height="0dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/test_nav_host"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/img"
             />
-
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            imageUrl="@{vm.imgPath}"
+            android:onClick="@{()->click.checkImg()}"
+            android:transitionName="testImg"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,6 +13,7 @@ class TestViewModel : AppBaseViewModel() {
 
     val retResponse = MutableLiveData<DemoResponse>()
     val error = MutableLiveData<Boolean>()
+    val imgPath = MutableLiveData<String>()
 
     fun refreshProjectList() {
         launchDataCheck(

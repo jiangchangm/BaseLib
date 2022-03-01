@@ -5,7 +5,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.jiangcm.common.ext.ImgOption
 import com.jiangcm.common.ext.loadImgUrlWithGlide
-import com.jiangcm.common.ext.loadImgUrlWithThumbnailAuto
 
 @BindingAdapter("android:text")
 fun TextView.setBindingText(text: String?) {
@@ -20,5 +19,5 @@ fun TextView.setBindingText(text: String?) {
 
 @BindingAdapter("imageUrl")
 fun loadImage(imageView: ImageView, url: String?) {
-    imageView.loadImgUrlWithThumbnailAuto(url, ImgOption.imgOption)
+    imageView.loadImgUrlWithGlide(url, ImgOption.imgOption)
 }
