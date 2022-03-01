@@ -23,7 +23,8 @@
             />
         <action
             android:id="@+id/action_testFragment1_to_webActivity"
-            app:destination="@id/webActivity" />
+            app:destination="@id/webActivity"
+            />
     </fragment>
     <fragment
         android:id="@+id/testFragment2"

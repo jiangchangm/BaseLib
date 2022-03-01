@@ -1,10 +1,9 @@
 package com.jiangcm.baselib.ui.navigationButton
 
 import androidx.lifecycle.MutableLiveData
-import com.jiangcm.base.callback.databind.StringObservableField
-import com.jiangcm.common.base.AppBaseViewModel
+import com.jiangcm.common.base.BaseViewModel
 
-class TestFragmentVM : AppBaseViewModel() {
+class TestFragmentVM : BaseViewModel() {
 
     val str = MutableLiveData<String>()
     val imgPath = MutableLiveData<String>()

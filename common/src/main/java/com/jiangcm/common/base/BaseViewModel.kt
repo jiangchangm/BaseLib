@@ -14,7 +14,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.net.ssl.SSLHandshakeException
 
-open class AppBaseViewModel : BaseViewModel() {
+open class BaseViewModel : BaseViewModel() {
     /**
      * 统一处理错误
      * @param e 异常
